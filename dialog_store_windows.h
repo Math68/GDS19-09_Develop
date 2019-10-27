@@ -7,6 +7,7 @@
 #include <QComboBox>
 
 enum Components{Capacitor=0, Connector, Diode, Inductor, IntegratedCircuit, Led, Quartz, Relay, Resistor, Transistor};
+
 static Components SelectedComponent;
 
 namespace Ui {

@@ -58,7 +58,7 @@ void Dialog_store_windows::set_capacitor_store_window()
 
     QSqlQueryModel *model1 = new QSqlQueryModel();
     QSqlQuery qry1;
-    qry1.prepare("SELECT DISTINCT Voltage FROM Parts WHERE Component='Capacitor' ORDER BY Voltage"); //SELECT DISTINCT Voltage from Parts WHERE Voltage!='NULL' order by Voltage  //select distinct Voltage from Combobox_Voltage where Voltage!='NULL' order by Voltage");
+    qry1.prepare("SELECT DISTINCT Voltage FROM Parts WHERE Component='Capacitor' ORDER BY Voltage");
     qry1.exec();
     model1->setQuery(qry1);
     Combobox_store_voltage->setModel(model1);
