@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -35,14 +36,23 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
-    QGroupBox *groupBox_component;
     QHBoxLayout *horizontalLayout;
+    QGroupBox *groupBox_component;
+    QGridLayout *gridLayout_2;
     QSpacerItem *horizontalSpacer;
     QComboBox *comboBox_component;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton_search_component;
     QPushButton *pushButton_store_component;
     QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *horizontalSpacer_7;
+    QGroupBox *groupBox_2;
+    QGridLayout *gridLayout;
+    QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *horizontalSpacer_6;
+    QPushButton *pushButton_search_component_3;
+    QPushButton *pushButton_search_component_2;
+    QSpacerItem *horizontalSpacer_5;
     QGroupBox *groupBox_filtre;
     QHBoxLayout *horizontalLayout_2;
     QStackedWidget *stackedWidget;
@@ -68,22 +78,25 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(649, 521);
+        MainWindow->resize(631, 521);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         groupBox_component = new QGroupBox(centralWidget);
         groupBox_component->setObjectName(QStringLiteral("groupBox_component"));
-        horizontalLayout = new QHBoxLayout(groupBox_component);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        gridLayout_2 = new QGridLayout(groupBox_component);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         horizontalSpacer = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer);
+        gridLayout_2->addItem(horizontalSpacer, 0, 0, 1, 1);
 
         comboBox_component = new QComboBox(groupBox_component);
         comboBox_component->addItem(QString());
@@ -100,31 +113,73 @@ public:
         comboBox_component->setObjectName(QStringLiteral("comboBox_component"));
         comboBox_component->setMinimumSize(QSize(120, 25));
 
-        horizontalLayout->addWidget(comboBox_component);
+        gridLayout_2->addWidget(comboBox_component, 0, 1, 1, 1);
 
         horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer_2);
+        gridLayout_2->addItem(horizontalSpacer_2, 0, 2, 1, 1);
 
         pushButton_search_component = new QPushButton(groupBox_component);
         pushButton_search_component->setObjectName(QStringLiteral("pushButton_search_component"));
         pushButton_search_component->setEnabled(true);
         pushButton_search_component->setMinimumSize(QSize(80, 25));
 
-        horizontalLayout->addWidget(pushButton_search_component);
+        gridLayout_2->addWidget(pushButton_search_component, 0, 3, 1, 1);
 
         pushButton_store_component = new QPushButton(groupBox_component);
         pushButton_store_component->setObjectName(QStringLiteral("pushButton_store_component"));
         pushButton_store_component->setMinimumSize(QSize(80, 25));
 
-        horizontalLayout->addWidget(pushButton_store_component);
+        gridLayout_2->addWidget(pushButton_store_component, 0, 4, 1, 1);
 
-        horizontalSpacer_3 = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer_3);
+        gridLayout_2->addItem(horizontalSpacer_3, 0, 5, 1, 1);
 
 
-        verticalLayout->addWidget(groupBox_component);
+        horizontalLayout->addWidget(groupBox_component);
+
+        horizontalSpacer_7 = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_7);
+
+        groupBox_2 = new QGroupBox(centralWidget);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        gridLayout = new QGridLayout(groupBox_2);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        horizontalSpacer_4 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_4, 0, 0, 1, 1);
+
+        horizontalSpacer_6 = new QSpacerItem(15, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_6, 0, 6, 1, 1);
+
+        pushButton_search_component_3 = new QPushButton(groupBox_2);
+        pushButton_search_component_3->setObjectName(QStringLiteral("pushButton_search_component_3"));
+        pushButton_search_component_3->setEnabled(true);
+        pushButton_search_component_3->setMinimumSize(QSize(80, 25));
+
+        gridLayout->addWidget(pushButton_search_component_3, 0, 5, 1, 1);
+
+        pushButton_search_component_2 = new QPushButton(groupBox_2);
+        pushButton_search_component_2->setObjectName(QStringLiteral("pushButton_search_component_2"));
+        pushButton_search_component_2->setEnabled(true);
+        pushButton_search_component_2->setMinimumSize(QSize(80, 25));
+
+        gridLayout->addWidget(pushButton_search_component_2, 0, 3, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_5, 0, 4, 1, 1);
+
+
+        horizontalLayout->addWidget(groupBox_2);
+
+
+        verticalLayout->addLayout(horizontalLayout);
 
         groupBox_filtre = new QGroupBox(centralWidget);
         groupBox_filtre->setObjectName(QStringLiteral("groupBox_filtre"));
@@ -216,18 +271,21 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 649, 21));
+        menuBar->setEnabled(false);
+        menuBar->setGeometry(QRect(0, 0, 631, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setEnabled(false);
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
+        statusBar->setEnabled(false);
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(7);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -235,7 +293,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V3 - 25/10/2019", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V3 - 27/10/2019", nullptr));
         groupBox_component->setTitle(QApplication::translate("MainWindow", "Component", nullptr));
         comboBox_component->setItemText(0, QApplication::translate("MainWindow", "Choose", nullptr));
         comboBox_component->setItemText(1, QApplication::translate("MainWindow", "Capacitor", nullptr));
@@ -251,6 +309,9 @@ public:
 
         pushButton_search_component->setText(QApplication::translate("MainWindow", "Search", nullptr));
         pushButton_store_component->setText(QApplication::translate("MainWindow", "Store", nullptr));
+        groupBox_2->setTitle(QApplication::translate("MainWindow", "Search by", nullptr));
+        pushButton_search_component_3->setText(QApplication::translate("MainWindow", "P/ N", nullptr));
+        pushButton_search_component_2->setText(QApplication::translate("MainWindow", "Id", nullptr));
         groupBox_filtre->setTitle(QApplication::translate("MainWindow", "Filter", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Editor", nullptr));
     } // retranslateUi
