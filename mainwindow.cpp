@@ -172,6 +172,7 @@ void MainWindow::displayTable(QString data)
 
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnsToContents();
+    //ui->tableView->
 }
 
 void MainWindow::onRefreshTable(QString dataToRefresh)
