@@ -18,6 +18,7 @@ Dialog_store_windows::Dialog_store_windows(QWidget *parent) :
 
     QSqlDatabase::database();
 
+/*
     QSqlQueryModel *model1=new QSqlQueryModel();
     QSqlQuery qry1;
     qry1.exec("SELECT DISTINCT Mounting FROM parts WHERE Mounting != 'NULL' ORDER BY Mounting");
@@ -29,6 +30,7 @@ Dialog_store_windows::Dialog_store_windows(QWidget *parent) :
     qry2.exec("SELECT DISTINCT Supplier FROM Parts WHERE Supplier != 'NULL' ORDER BY Supplier"); // was prepare
     model2->setQuery(qry2);
     ui->comboBox_store_supplier->setModel(model2);
+    */
 }
 
 Dialog_store_windows::~Dialog_store_windows()
@@ -36,8 +38,14 @@ Dialog_store_windows::~Dialog_store_windows()
     delete ui;
 }
 
+void Dialog_store_windows::FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox){
 
-
+    QSqlQuery qry;
+    qry.exec(_String.arg(_Item, _Component));
+    QSqlQueryModel *Model = new QSqlQueryModel;
+    Model->setQuery(qry);
+    Combobox->setModel(Model);
+}
 
 void Dialog_store_windows::set_capacitor_store_window()
 {
@@ -56,26 +64,37 @@ void Dialog_store_windows::set_capacitor_store_window()
     ui->gridLayout_store->addWidget(Label_store_tolerance,2,3);
     ui->gridLayout_store->addWidget(Combobox_store_tolerance,2,4);
 
+    /*
     QSqlQueryModel *model1 = new QSqlQueryModel();
     QSqlQuery qry1;
     qry1.prepare("SELECT DISTINCT Voltage FROM Parts WHERE Component='Capacitor' ORDER BY Voltage");
     qry1.exec();
     model1->setQuery(qry1);
     Combobox_store_voltage->setModel(model1);
+    */
 
+    FillComboBox(SelectData,"Voltage","Capacitor",Combobox_store_voltage);
+
+    /*
     QSqlQueryModel *model2 = new QSqlQueryModel();
     QSqlQuery qry2;
     qry2.prepare("SELECT DISTINCT Tolerance FROM Parts WHERE Component='Capacitor' ORDER BY Tolerance");
     qry2.exec();
     model2->setQuery(qry2);
     Combobox_store_tolerance->setModel(model2);
+    */
 
+    FillComboBox(SelectData,"Tolerance","Capacitor",Combobox_store_tolerance);
+/*
     QSqlQueryModel *model3=new QSqlQueryModel();
     QSqlQuery qry3;
     qry3.prepare("SELECT DISTINCT Package FROM Parts WHERE Component='Capacitor' ORDER BY Package");
     qry3.exec();
     model3->setQuery(qry3);
     ui->comboBox_store_package->setModel(model3);
+    */
+
+    FillComboBox(SelectData,"Package","Capacitor",ui->comboBox_store_package);
 }
 
 void Dialog_store_windows::set_connector_store_window()
@@ -130,40 +149,50 @@ void Dialog_store_windows::set_diode_store_window()
     ui->gridLayout_store->addWidget(Label_store_current,3,3);
     ui->gridLayout_store->addWidget(Combobox_store_current,3,4);
 
-    QSqlQueryModel *model1 = new QSqlQueryModel();
+/*    QSqlQueryModel *model1 = new QSqlQueryModel();
     QSqlQuery qry1;
     qry1.prepare("SELECT DISTINCT Voltage FROM Parts WHERE Component='Diode' ORDER by Voltage");
     qry1.exec();
     model1->setQuery(qry1);
-    Combobox_store_voltage->setModel(model1);
+    Combobox_store_voltage->setModel(model1);*/
 
-    QSqlQueryModel *model2 = new QSqlQueryModel();
+    FillComboBox(SelectData,"Voltage","Diode",Combobox_store_voltage);
+
+    /*QSqlQueryModel *model2 = new QSqlQueryModel();
     QSqlQuery qry2;
     qry2.prepare("SELECT DISTINCT Current FROM Parts WHERE (Component='Diode' AND Current != 'NULL') ORDER by Current");
     qry2.exec();
     model2->setQuery(qry2);
-    Combobox_store_current->setModel(model2);
+    Combobox_store_current->setModel(model2);*/
 
-    QSqlQueryModel *model3=new QSqlQueryModel();
+    FillComboBox(SelectData,"Current","Diode",Combobox_store_current);
+
+    /*QSqlQueryModel *model3=new QSqlQueryModel();
     QSqlQuery qry3;
     qry3.prepare("SELECT DISTINCT Type FROM Parts WHERE Component='Diode' ORDER by Type");
     qry3.exec();
     model3->setQuery(qry3);
-    ComboBox_store_type->setModel(model3);
+    ComboBox_store_type->setModel(model3);*/
 
-    QSqlQueryModel *model4 = new QSqlQueryModel();
+    FillComboBox(SelectData,"Type","Diode",ComboBox_store_type);
+
+    /*QSqlQueryModel *model4 = new QSqlQueryModel();
     QSqlQuery qry4;
     qry4.prepare("SELECT DISTINCT Package FROM Parts WHERE Component='Diode' ORDER by Package");
     qry4.exec();
     model4->setQuery(qry4);
-    ui->comboBox_store_package->setModel(model4);
+    ui->comboBox_store_package->setModel(model4);*/
 
-    QSqlQueryModel *model5 = new QSqlQueryModel();
+    FillComboBox(SelectData,"Package","Diode",ui->comboBox_store_package);
+
+    /*QSqlQueryModel *model5 = new QSqlQueryModel();
     QSqlQuery qry5;
     qry5.prepare("SELECT DISTINCT Power FROM Parts WHERE (Component='Diode' AND Power != 'NULL') ORDER by Power");
     qry5.exec();
     model5->setQuery(qry5);
-    Combobox_store_power->setModel(model5);
+    Combobox_store_power->setModel(model5);*/
+
+    FillComboBox(SelectData,"Power","Diode",Combobox_store_power);
 }
 
 void Dialog_store_windows::set_inductor_store_window()
@@ -634,7 +663,6 @@ void Dialog_store_windows::save_transistor()
                "'"+ComboBox_store_type->currentText()+"',"
                "'"+ui->comboBox_store_supplier->currentText()+"',"
                "'"+ui->lineEdit_store_item_number->text()+"',"
-
                "'"+Combobox_store_voltage->currentText()+"',"
                "'"+Combobox_store_current->currentText()+"')");
 }

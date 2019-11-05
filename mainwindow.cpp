@@ -1,4 +1,4 @@
-// 31/05/2019
+// 04/11/2019
 #include <QMessageBox>
 #include <QDialog>
 #include <QSqlDatabase>
@@ -46,6 +46,15 @@ MainWindow::MainWindow(QWidget *parent) :
     //Database connection
     if(!GDS19_DataBase.OpenConnection())
         QMessageBox::warning(this,tr(" "),tr("Database opening failed !!!"));
+
+    QSqlQueryModel *model2=new QSqlQueryModel();
+    QSqlQuery qry2;
+    qry2.exec("SELECT DISTINCT Item_number FROM Parts ORDER BY Item_number");
+
+    model2->setQuery(qry2);
+    ui->comboBox_search_Item_Number->setModel(model2);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -170,9 +179,25 @@ void MainWindow::displayTable(QString data)
     model = new QSqlQueryModel();
     model->setQuery(*qry);
 
+
+
     ui->tableView->setModel(model);
-    ui->tableView->resizeColumnsToContents();
-    //ui->tableView->
+   // ui->tableView->resizeColumnsToContents();
+
+/*
+    int count=ui->tableView->horizontalHeader()->count();
+    int scrollBarWidth=ui->tableView->verticalScrollBar();
+    qDebug()<<count;
+    int rowTotalWidth=0;
+    for (int i = 0; i < count; ++i) {
+        rowTotalWidth+=ui->tableView->horizontalHeader()->sectionSize(i);
+    }
+
+    ui->tableView->setMinimumWidth(rowTotalWidth);
+  */
+    //ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+
 }
 
 void MainWindow::onRefreshTable(QString dataToRefresh)
@@ -257,6 +282,7 @@ void MainWindow::on_pushButton_store_component_clicked()
 
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
+
     ColumnName = model->record().fieldName(index.column());  // Recupère le nom de la colonne
     CellData = ui->tableView->model()->data(index).toString();  // Recupère le contenu de la cellule
     QModelIndex PartIdIndex = model->index(index.row(),0);  // crétion d'un index pour la colonne Parts_Id
@@ -287,4 +313,87 @@ void MainWindow::DataBaseDeleteRow(){
     query.exec("DELETE FROM Parts WHERE Parts_id='"+PartIdNumber+"' ");
     // Table has to be refresch
     on_pushButton_search_component_clicked();
+}
+
+
+//********************************************************************************
+//
+//Search fonction by Id or Item Number
+//
+//********************************************************************************
+
+void MainWindow::on_pushButton_SearchBy_clicked()
+{
+    int SearchIdState=-1, SearchItemNumberState=-1;
+    QString LookingForItemNumber="", ItemNumber="", _Component="", Reachdata="";
+    QSqlQuery qry;
+
+    qDebug() << SearchIdState << SearchItemNumberState;
+
+    if(ui->lineEdit_search_Id->text().isEmpty())
+            SearchIdState=0;
+    else SearchIdState=1;
+
+    qDebug() << SearchIdState;
+
+    if(ui->comboBox_search_Item_Number->currentText().isEmpty() || ui->comboBox_search_Item_Number->currentText().isNull())
+        SearchItemNumberState=0;
+    else SearchItemNumberState=1;
+
+    qDebug() << SearchItemNumberState;
+
+    //qDebug() << ui->lineEdit_search_Id->text() << ui->comboBox_search_Item_Number->currentText();
+    //QMessageBox::warning(this,tr(" "),tr("Check if working !!!"));
+
+    if(SearchIdState==0 && SearchItemNumberState==0){
+        QMessageBox::warning(this,tr(" "),tr("Make a choose!!! You have to select an Item number or inform the Id box!!!"));
+    }
+    else if (SearchIdState==1 && SearchItemNumberState==1){
+        QMessageBox::warning(this,tr(" "),tr("To match Item selected, please make your choose !!!"));
+    }
+    else if (SearchIdState==1 && SearchItemNumberState==0){
+
+    }
+    else if (SearchIdState==0 && SearchItemNumberState==1){
+
+        ItemNumber=ui->comboBox_search_Item_Number->currentText();
+
+        Reachdata ="SELECT Component FROM Parts WHERE Item_number = '%1'";
+        qry.exec(Reachdata.arg(ItemNumber));
+        qry.first();
+        _Component=qry.value(0).toString();
+        qDebug()<<_Component;
+
+        if(_Component=="Capacitor"){
+            LookingForItemNumber=SearchCapacitorbyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Connector"){
+            LookingForItemNumber=SearchConnectorbyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Diode"){
+            LookingForItemNumber=SearchDiodebyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Inductor"){
+            LookingForItemNumber=SearchInductorbyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Integrated Circuit"){
+            LookingForItemNumber=SearchIntegratedCircuitsbyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Led"){
+            LookingForItemNumber=SearchLedbyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Quartz"){
+            LookingForItemNumber=SearchQuartzbyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Relay"){
+            LookingForItemNumber=SearchRelaybyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Resistor"){
+            LookingForItemNumber=SearchResistorbyItemNumber.arg(ItemNumber);
+        }
+        else if(_Component=="Transistor"){
+            LookingForItemNumber=SearchTransistorbyItemNumber.arg(ItemNumber);
+        }
+        displayTable(LookingForItemNumber);
+    }
 }

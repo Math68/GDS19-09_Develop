@@ -18,6 +18,8 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -46,8 +48,12 @@ public:
     QPushButton *pushButton_store_component;
     QGroupBox *groupBox_3;
     QHBoxLayout *horizontalLayout_4;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QLabel *label;
+    QLineEdit *lineEdit_search_Id;
+    QSpacerItem *horizontalSpacer_2;
+    QLabel *label_2;
+    QComboBox *comboBox_search_Item_Number;
+    QPushButton *pushButton_SearchBy;
     QGroupBox *groupBox_filtre;
     QHBoxLayout *horizontalLayout_2;
     QStackedWidget *stackedWidget;
@@ -73,7 +79,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(582, 595);
+        MainWindow->resize(684, 595);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -135,15 +141,40 @@ public:
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        pushButton = new QPushButton(groupBox_3);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        label = new QLabel(groupBox_3);
+        label->setObjectName(QStringLiteral("label"));
 
-        horizontalLayout_4->addWidget(pushButton);
+        horizontalLayout_4->addWidget(label);
 
-        pushButton_2 = new QPushButton(groupBox_3);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        lineEdit_search_Id = new QLineEdit(groupBox_3);
+        lineEdit_search_Id->setObjectName(QStringLiteral("lineEdit_search_Id"));
+        lineEdit_search_Id->setMinimumSize(QSize(60, 25));
+        lineEdit_search_Id->setMaximumSize(QSize(60, 25));
 
-        horizontalLayout_4->addWidget(pushButton_2);
+        horizontalLayout_4->addWidget(lineEdit_search_Id);
+
+        horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_2);
+
+        label_2 = new QLabel(groupBox_3);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        horizontalLayout_4->addWidget(label_2);
+
+        comboBox_search_Item_Number = new QComboBox(groupBox_3);
+        comboBox_search_Item_Number->setObjectName(QStringLiteral("comboBox_search_Item_Number"));
+        comboBox_search_Item_Number->setMinimumSize(QSize(60, 25));
+        comboBox_search_Item_Number->setMaximumSize(QSize(16777215, 25));
+
+        horizontalLayout_4->addWidget(comboBox_search_Item_Number);
+
+        pushButton_SearchBy = new QPushButton(groupBox_3);
+        pushButton_SearchBy->setObjectName(QStringLiteral("pushButton_SearchBy"));
+        pushButton_SearchBy->setMinimumSize(QSize(60, 25));
+        pushButton_SearchBy->setMaximumSize(QSize(60, 25));
+
+        horizontalLayout_4->addWidget(pushButton_SearchBy);
 
 
         gridLayout_2->addWidget(groupBox_3, 0, 1, 1, 1);
@@ -243,7 +274,7 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setEnabled(false);
-        menuBar->setGeometry(QRect(0, 0, 582, 21));
+        menuBar->setGeometry(QRect(0, 0, 684, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -281,9 +312,10 @@ public:
 
         pushButton_search_component->setText(QApplication::translate("MainWindow", "Search", nullptr));
         pushButton_store_component->setText(QApplication::translate("MainWindow", "Store", nullptr));
-        groupBox_3->setTitle(QApplication::translate("MainWindow", "Search by", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "Id", nullptr));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Part Number", nullptr));
+        groupBox_3->setTitle(QApplication::translate("MainWindow", "Search by Id or Item Number", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Id", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "I/ N", nullptr));
+        pushButton_SearchBy->setText(QApplication::translate("MainWindow", "Search", nullptr));
         groupBox_filtre->setTitle(QApplication::translate("MainWindow", "Filter", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Editor", nullptr));
     } // retranslateUi

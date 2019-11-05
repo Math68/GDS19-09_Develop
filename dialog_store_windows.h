@@ -45,6 +45,8 @@ public:
     void save_resistor();
     void save_transistor();
 
+    void FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox);
+
 public slots:
     void on_pushButton_store_save_clicked();
     void on_pushButton_store_cancel_clicked();
