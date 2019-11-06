@@ -182,6 +182,8 @@ void Form_filter::set_transistor_filter(){
 
 void Form_filter::FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox){
 
+    //QString SelectData = "SELECT DISTINCT %1 FROM Parts WHERE Component='%2' ORDER BY %1";
+
     QSqlQuery qry;
     //qry.exec(_String.arg(_Item).arg(_Component));
     qry.exec(_String.arg(_Item, _Component));
@@ -270,7 +272,7 @@ void Form_filter::set_transistor_combobox(){
 */
 
 void Form_filter::on_comboBox_filter_reference_currentTextChanged(const QString &arg1){
-    if(comboBox_filter_reference->currentText()!=""){
+    if(comboBox_filter_reference->currentText() !="" ){ // != ""
         // Si qq chose de selectionné
         if(ListFilterCombobox.indexOf("Reference")==-1){
             // Si Reference ne fait pas partie de la liste des Combobox selectionné
@@ -291,12 +293,20 @@ void Form_filter::on_comboBox_filter_reference_currentTextChanged(const QString 
         ListFilterCombobox.removeOne("Reference");
         // Retrait de Reference de la liste des combobox
     }
+
+
+
 }
 
 void Form_filter::on_comboBox_filter_value_currentTextChanged(const QString &arg1){
     // 20.01.19
-    if(comboBox_filter_value->currentText()!="")
+
+    qDebug()<<"Value modified !!!";
+
+    if(comboBox_filter_value->currentText()!="") //
     {
+        qDebug() << "Value is not empty !!!";
+
         if(ListFilterCombobox.indexOf("Value")==-1){
             ListFilterCombobox<<"Value";
             ListFilterData.insert(ListFilterCombobox.indexOf("Value") , arg1 );
@@ -306,6 +316,7 @@ void Form_filter::on_comboBox_filter_value_currentTextChanged(const QString &arg
         }
     }
     else if(comboBox_filter_value->currentText()=="" && ListFilterCombobox.indexOf("Value")!=-1){
+        qDebug() << "Value is empty as the list !!!";
         ListFilterData.removeAt(ListFilterCombobox.indexOf("Value"));
         ListFilterCombobox.removeOne("Value");
     }
@@ -579,10 +590,10 @@ void Form_filter::FillFilteredComboBox_FourItem(QString _String, QString _Item, 
 void Form_filter::on_pushButton_filter_activate_filter_clicked()
 {
     QString dataToRefresh;
-    QString SelectFilteredData_OneItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND ( %3 = '%4' OR %1 = '' ) ORDER BY %1 ";
-    QString SelectFilteredData_TwoItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND ( %3 = '%4' AND %5 = '%6' OR %1 = '' ) ORDER BY %1 ";
-    QString SelectFilteredData_ThreeItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND ( %3 = '%4' AND %5 = '%6' AND %7 = '%8' OR %1 = '' ) ORDER BY %1 ";
-    QString SelectFilteredData_FourItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND ( %3 = '%4' AND %5 = '%6' AND %7 = '%8' AND %9 = '%10' OR %1 = '' ) ORDER BY %1 ";
+    QString SelectFilteredData_OneItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND (%3 = '%4' OR %3 IS NULL) ORDER BY %1 ";
+    QString SelectFilteredData_TwoItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND ( %3 = '%4' AND %5 = '%6' OR %3 IS NULL ) ORDER BY %1 ";
+    QString SelectFilteredData_ThreeItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND ( %3 = '%4' AND %5 = '%6' AND %7 = '%8' OR %3 IS NULL ) ORDER BY %1 ";
+    QString SelectFilteredData_FourItem = " SELECT DISTINCT %1 FROM Parts WHERE Component = '%2' AND ( %3 = '%4' AND %5 = '%6' AND %7 = '%8' AND %9 = '%10' OR %3 IS NULL ) ORDER BY %1 ";
 
     if(componentToFilter==Capacitor){
 

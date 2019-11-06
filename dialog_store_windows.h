@@ -86,7 +86,9 @@ private:
     QComboBox *Combobox_store_diameter;
     QComboBox *Combobox_store_configuration;
 
-    QString SelectData="SELECT DISTINCT %1 FROM parts WHERE %1 != 'NULL' ORDER BY %1";
+    // "SELECT DISTINCT Voltage FROM Parts WHERE Component='Capacitor' ORDER BY Voltage"
+    //QString SelectData="SELECT DISTINCT %1 FROM parts WHERE %2 != 'NULL' ORDER BY %1";
+    QString SelectData="SELECT DISTINCT %1 FROM parts WHERE Component = '%2' ORDER BY %1";
 };
 
 #endif // DIALOG_STORE_WINDOWS_H

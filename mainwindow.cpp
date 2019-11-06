@@ -179,8 +179,6 @@ void MainWindow::displayTable(QString data)
     model = new QSqlQueryModel();
     model->setQuery(*qry);
 
-
-
     ui->tableView->setModel(model);
    // ui->tableView->resizeColumnsToContents();
 
@@ -196,8 +194,6 @@ void MainWindow::displayTable(QString data)
     ui->tableView->setMinimumWidth(rowTotalWidth);
   */
     //ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-
 }
 
 void MainWindow::onRefreshTable(QString dataToRefresh)

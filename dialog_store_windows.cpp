@@ -18,19 +18,21 @@ Dialog_store_windows::Dialog_store_windows(QWidget *parent) :
 
     QSqlDatabase::database();
 
-/*
     QSqlQueryModel *model1=new QSqlQueryModel();
     QSqlQuery qry1;
-    qry1.exec("SELECT DISTINCT Mounting FROM parts WHERE Mounting != 'NULL' ORDER BY Mounting");
+    qry1.exec("SELECT DISTINCT Mounting FROM parts ORDER BY Mounting");
     model1->setQuery(qry1);
     ui->comboBox_store_mounting->setModel(model1);
 
     QSqlQueryModel *model2=new QSqlQueryModel();
     QSqlQuery qry2;
-    qry2.exec("SELECT DISTINCT Supplier FROM Parts WHERE Supplier != 'NULL' ORDER BY Supplier"); // was prepare
+    qry2.exec("SELECT DISTINCT Supplier FROM Parts ORDER BY Supplier");
     model2->setQuery(qry2);
     ui->comboBox_store_supplier->setModel(model2);
-    */
+
+
+    //FillComboBox(SelectData,"Voltage","Diode",Combobox_store_voltage);
+
 }
 
 Dialog_store_windows::~Dialog_store_windows()
@@ -39,6 +41,8 @@ Dialog_store_windows::~Dialog_store_windows()
 }
 
 void Dialog_store_windows::FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox){
+
+    // "SELECT DISTINCT Voltage FROM Parts WHERE Component='Capacitor' ORDER BY Voltage"
 
     QSqlQuery qry;
     qry.exec(_String.arg(_Item, _Component));
