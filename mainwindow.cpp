@@ -321,7 +321,7 @@ void MainWindow::DataBaseDeleteRow(){
 void MainWindow::on_pushButton_SearchBy_clicked()
 {
     int SearchIdState=-1, SearchItemNumberState=-1;
-    QString LookingForItemNumber="", ItemNumber="", _Component="", Reachdata="";
+    QString LookingForItemNumber="", LookingforPartId, ItemNumber="", _Component="", Reachdata="", PartId="";
     QSqlQuery qry;
 
     qDebug() << SearchIdState << SearchItemNumberState;
@@ -349,6 +349,57 @@ void MainWindow::on_pushButton_SearchBy_clicked()
     }
     else if (SearchIdState==1 && SearchItemNumberState==0){
 
+        PartId=ui->lineEdit_search_Id->text();
+        Reachdata ="SELECT Component FROM Parts WHERE Parts_id = '%1'";
+
+        if(ui->lineEdit_search_Id->text().toInt() < 100)
+        {
+            //qDebug() << "This Part Id doesnt exist !!! Choose a value >=100 !!!";
+            QMessageBox::warning(this,tr(" "),tr("This Part Id doesnt exist !!! Choose a value >= 100 !!!"));
+        }
+        else{
+            qry.exec(Reachdata.arg(PartId));
+            qry.first();
+            _Component=qry.value(0).toString();
+            qDebug()<<_Component;
+            if(_Component==""){
+                QMessageBox::warning(this,tr(" "),tr("This Part Id doesnt exist !!!"));
+            }
+            else{
+
+                if(_Component=="Capacitor"){
+                    LookingforPartId=SearchCapacitorbyPartId.arg(PartId);
+                }
+                else if(_Component=="Connector"){
+                    LookingforPartId=SearchConnectorbyPartId.arg(PartId);
+                }
+                else if(_Component=="Diode"){
+                    LookingforPartId=SearchDiodebyPartId.arg(PartId);
+                }
+                else if(_Component=="Inductor"){
+                    LookingforPartId=SearchInductorbyPartId.arg(PartId);
+                }
+                else if(_Component=="Integrated Circuit"){
+                    LookingforPartId=SearchIntegratedCircuitbyPartId.arg(PartId);
+                }
+                else if(_Component=="Led"){
+                    LookingforPartId=SearchLedbyPartId.arg(PartId);
+                }
+                else if(_Component=="Quartz"){
+                    LookingforPartId=SearchQuartzbyPartId.arg(PartId);
+                }
+                else if(_Component=="Relay"){
+                    LookingforPartId=SearchRelaybyPartId.arg(PartId);
+                }
+                else if(_Component=="Resistor"){
+                    LookingforPartId=SearchResistorbyPartId.arg(PartId);
+                }
+                else if(_Component=="Transistor"){
+                    LookingforPartId=SearchTransistorbyPartId.arg(PartId);
+                }
+                displayTable(LookingforPartId);
+            }
+        }
     }
     else if (SearchIdState==0 && SearchItemNumberState==1){
 
