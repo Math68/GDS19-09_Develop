@@ -83,6 +83,16 @@ public:
     QString SearchResistorbyItemNumber = "SELECT Parts_id, Component, Value, Quantity, Power, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE component='Resistor' AND Item_number='%1'";
     QString SearchTransistorbyItemNumber = "SELECT Parts_id, Component, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Transistor' AND Item_number='%1'";
 
+    QString SearchCapacitorbyPartId = "SELECT Parts_id, Component, Value, Quantity, Voltage, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Capacitor' AND Parts_id='%1'";
+    QString SearchConnectorbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number FROM Parts WHERE Component='Connector' AND Parts_id='%1'";
+    QString SearchDiodebyPartId = "SELECT Parts_id, Component, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Diode' AND Parts_id='%1'";
+    QString SearchInductorbyPartId = "SELECT Parts_id, Component, Value, Quantity, Mounting, Package, Current, Tolerance, Supplier, Item_number FROM Parts WHERE Component='Inductor' AND Parts_id='%1'";
+    QString SearchIntegratedCircuitbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Integrated Circuit' AND Parts_id='%1'";
+    QString SearchLedbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Mounting, Package, Color, Diameter, Supplier, Item_number FROM Parts WHERE Component='Led' AND Parts_id='%1'";
+    QString SearchQuartzbyPartId = "SELECT Parts_id, Component, Value, Quantity, Mounting, Package, Supplier, Item_number FROM Parts WHERE Component='Quartz' AND Parts_id='%1'";
+    QString SearchRelaybyPartId ="SELECT Parts_id, Component, Reference, Quantity, Mounting, Package, Voltage, Current, Configuration, Supplier, Item_number FROM Parts WHERE Component='Relay' AND Parts_id='%1'";
+    QString SearchResistorbyPartId = "SELECT Parts_id, Component, Value, Quantity, Power, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE component='Resistor' AND Parts_id='%1'";
+    QString SearchTransistorbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Transistor' AND Parts_id='%1'";
 
 
 public slots:
