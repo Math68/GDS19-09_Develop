@@ -1,0 +1,11 @@
+16/11/19: 	Component Diode,
+		Power cell will not modified when component is saved
+
+		Component Led:
+		Filter is not working
+
+		Component Quartz:
+		Filter is not working
+
+		Component Relay
+		Filter is not working

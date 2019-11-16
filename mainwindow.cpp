@@ -197,8 +197,10 @@ void MainWindow::displayTable(QString data)
 
     if(RowTotalWidth>=700)
         this->setFixedWidth(RowTotalWidth+66);
-    else
-      this->setFixedWidth(680);
+    else{
+        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        this->setFixedWidth(680);
+    }
 }
 
 void MainWindow::onRefreshTable(QString dataToRefresh)
@@ -222,55 +224,35 @@ void MainWindow::on_pushButton_store_component_clicked()
         connect(&store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::on_pushButton_search_component_clicked);
 
         if(ui->comboBox_component->currentText()=="Capacitor")
-        {
-            //SelectedComponent=Capacitor;
             store_window.set_capacitor_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Connector")
-        {
-            //SelectedComponent=Connector;
             store_window.set_connector_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Diode")
-        {
-            //SelectedComponent=Diode;
             store_window.set_diode_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Inductor")
-        {
-            //SelectedComponent=Inductor;
             store_window.set_inductor_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Integrated Circuit")
-        {
-            //SelectedComponent=IntegratedCircuit;
             store_window.set_integrated_circuit_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Led")
-        {
-            //SelectedComponent=Led;
             store_window.set_led_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Quartz")
-        {
-            //SelectedComponent=Quartz;
             store_window.set_quartz_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Relay")
-        {
-            //SelectedComponent=Relay;
             store_window.set_relay_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Resistor")
-        {
-            //SelectedComponent=Resistor;
             store_window.set_resistor_store_window();
-        }
+
         else if(ui->comboBox_component->currentText()=="Transistor")
-        {
-            //SelectedComponent=Transistor;
             store_window.set_transistor_store_window();
-        }
+
         store_window.exec();
     }
 }
