@@ -1,4 +1,4 @@
-// 04/11/2019
+// 16/11/2019
 #include <QMessageBox>
 #include <QDialog>
 #include <QSqlDatabase>
@@ -190,7 +190,6 @@ void MainWindow::displayTable(QString data)
 
     int RowTotalWidth=0;
     for (int i = 0; i < Count; i++) {
-        //ui->tableView->horizontalHeader()->sizeHintForColumn(i);
         RowTotalWidth+=ui->tableView->horizontalHeader()->sectionSize(i);
     }
 
@@ -199,7 +198,7 @@ void MainWindow::displayTable(QString data)
     if(RowTotalWidth>=700)
         this->setFixedWidth(RowTotalWidth+66);
     else
-        this->setFixedWidth(680);
+      this->setFixedWidth(680);
 }
 
 void MainWindow::onRefreshTable(QString dataToRefresh)
