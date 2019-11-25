@@ -293,9 +293,6 @@ void Form_filter::on_comboBox_filter_reference_currentTextChanged(const QString 
         ListFilterCombobox.removeOne("Reference");
         // Retrait de Reference de la liste des combobox
     }
-
-
-
 }
 
 void Form_filter::on_comboBox_filter_value_currentTextChanged(const QString &arg1){
