@@ -19,4 +19,5 @@ int main(int argc, char *argv[])
 // Update from 02/04/19: Capacitor Fiter completed, posibility to filtre up to 3 parameters.
 // Update from 04/04/19: Rest Filter completed, call function set_combobox
 // Update from 25/05/2019: SelectData String arguments corrected (%1 and %2)
-
+// Update from
+// Update from 25/11/19: Added Picture at component connector

@@ -42,10 +42,10 @@ void Form_filter::set_capacitor_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_value,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_value,1,1);
-    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,3);
-    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,4);
-    ui->gridLayout_filter->addWidget(Label_filter_tolerance,1,6);
-    ui->gridLayout_filter->addWidget(comboBox_filter_tolerance,1,7);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_tolerance,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_tolerance,1,5);
 
     set_capacitor_combobox();
 
@@ -67,10 +67,10 @@ void Form_filter::set_connector_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
-    ui->gridLayout_filter->addWidget(Label_filter_contacts,1,3);
-    ui->gridLayout_filter->addWidget(comboBox_filter_contacts,1,4);
-    ui->gridLayout_filter->addWidget(Label_filter_spacing,1,6);
-    ui->gridLayout_filter->addWidget(comboBox_filter_spacing,1,7);
+    ui->gridLayout_filter->addWidget(Label_filter_contacts,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_contacts,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_spacing,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_spacing,1,5);
 
     set_connector_combobox();
 
@@ -86,14 +86,14 @@ void Form_filter::set_diode_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
-    ui->gridLayout_filter->addWidget(Label_filter_type,1,3);
-    ui->gridLayout_filter->addWidget(comboBox_filter_type,1,4);
+    ui->gridLayout_filter->addWidget(Label_filter_type,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_type,1,3);
     ui->gridLayout_filter->addWidget(Label_filter_power,2,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_power,2,1);
-    ui->gridLayout_filter->addWidget(Label_filter_voltage,2,3);
-    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,2,4);
-    ui->gridLayout_filter->addWidget(Label_filter_current,2,6);
-    ui->gridLayout_filter->addWidget(comboBox_filter_current,2,7);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,2,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,2,3);
+    ui->gridLayout_filter->addWidget(Label_filter_current,2,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_current,2,5);
 
     set_diode_combobox();
 
@@ -115,8 +115,8 @@ void Form_filter::set_integrated_circuit_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
-    ui->gridLayout_filter->addWidget(Label_filter_type,1,3);
-    ui->gridLayout_filter->addWidget(comboBox_filter_type,1,4);
+    ui->gridLayout_filter->addWidget(Label_filter_type,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_type,1,3);
 
     set_integrated_circuit_combobox();
 
@@ -144,10 +144,10 @@ void Form_filter::set_resistor_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_value,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_value,1,1);
-    ui->gridLayout_filter->addWidget(Label_filter_power,1,3);
-    ui->gridLayout_filter->addWidget(comboBox_filter_power,1,4);
-    ui->gridLayout_filter->addWidget(Label_filter_tolerance,1,6);
-    ui->gridLayout_filter->addWidget(comboBox_filter_tolerance,1,7);
+    ui->gridLayout_filter->addWidget(Label_filter_power,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_power,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_tolerance,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_tolerance,1,5);
 
     set_resistor_combobox();
     connect ( comboBox_filter_value, SIGNAL (currentTextChanged(QString)), this,  SLOT(on_comboBox_filter_value_currentTextChanged(QString)));
@@ -163,12 +163,12 @@ void Form_filter::set_transistor_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
-    ui->gridLayout_filter->addWidget(Label_filter_type,1,3);
-    ui->gridLayout_filter->addWidget(comboBox_filter_type,1,4);
-    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,6);
-    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,7);
-    ui->gridLayout_filter->addWidget(Label_filter_current,1,9);
-    ui->gridLayout_filter->addWidget(comboBox_filter_current,1,10);
+    ui->gridLayout_filter->addWidget(Label_filter_type,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_type,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
+    ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
+    ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
 
     set_transistor_combobox();
 

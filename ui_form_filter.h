@@ -32,17 +32,14 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout;
     QGridLayout *gridLayout_filter;
-    QLabel *label_filter_item_number;
-    QComboBox *comboBox_filter_item_number;
-    QSpacerItem *horizontalSpacer;
-    QLabel *label_filter_supplier;
-    QComboBox *comboBox_filter_supplier;
-    QSpacerItem *horizontalSpacer_3;
-    QLabel *label_filter_mounting;
     QComboBox *comboBox_filter_mounting;
-    QSpacerItem *horizontalSpacer_6;
     QLabel *label_filter_package;
+    QLabel *label_filter_supplier;
+    QLabel *label_filter_item_number;
+    QComboBox *comboBox_filter_supplier;
+    QLabel *label_filter_mounting;
     QComboBox *comboBox_filter_package;
+    QComboBox *comboBox_filter_item_number;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_5;
     QPushButton *pushButton_filter_reset;
@@ -53,7 +50,7 @@ public:
     {
         if (Form_filter->objectName().isEmpty())
             Form_filter->setObjectName(QStringLiteral("Form_filter"));
-        Form_filter->resize(730, 75);
+        Form_filter->resize(652, 75);
         verticalLayout_2 = new QVBoxLayout(Form_filter);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_2 = new QHBoxLayout();
@@ -62,6 +59,37 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         gridLayout_filter = new QGridLayout();
         gridLayout_filter->setObjectName(QStringLiteral("gridLayout_filter"));
+        comboBox_filter_mounting = new QComboBox(Form_filter);
+        comboBox_filter_mounting->setObjectName(QStringLiteral("comboBox_filter_mounting"));
+        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(comboBox_filter_mounting->sizePolicy().hasHeightForWidth());
+        comboBox_filter_mounting->setSizePolicy(sizePolicy);
+        comboBox_filter_mounting->setMinimumSize(QSize(80, 20));
+        comboBox_filter_mounting->setMaximumSize(QSize(80, 20));
+        comboBox_filter_mounting->setBaseSize(QSize(80, 20));
+
+        gridLayout_filter->addWidget(comboBox_filter_mounting, 0, 5, 1, 1);
+
+        label_filter_package = new QLabel(Form_filter);
+        label_filter_package->setObjectName(QStringLiteral("label_filter_package"));
+        label_filter_package->setMinimumSize(QSize(65, 20));
+        label_filter_package->setMaximumSize(QSize(65, 20));
+        label_filter_package->setBaseSize(QSize(65, 20));
+        label_filter_package->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        gridLayout_filter->addWidget(label_filter_package, 0, 6, 1, 1);
+
+        label_filter_supplier = new QLabel(Form_filter);
+        label_filter_supplier->setObjectName(QStringLiteral("label_filter_supplier"));
+        label_filter_supplier->setMinimumSize(QSize(65, 20));
+        label_filter_supplier->setMaximumSize(QSize(65, 20));
+        label_filter_supplier->setBaseSize(QSize(65, 20));
+        label_filter_supplier->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        gridLayout_filter->addWidget(label_filter_supplier, 0, 2, 1, 1);
+
         label_filter_item_number = new QLabel(Form_filter);
         label_filter_item_number->setObjectName(QStringLiteral("label_filter_item_number"));
         label_filter_item_number->setEnabled(true);
@@ -72,36 +100,14 @@ public:
 
         gridLayout_filter->addWidget(label_filter_item_number, 0, 0, 1, 1);
 
-        comboBox_filter_item_number = new QComboBox(Form_filter);
-        comboBox_filter_item_number->setObjectName(QStringLiteral("comboBox_filter_item_number"));
-        comboBox_filter_item_number->setMinimumSize(QSize(80, 20));
-        comboBox_filter_item_number->setBaseSize(QSize(80, 20));
-
-        gridLayout_filter->addWidget(comboBox_filter_item_number, 0, 1, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(2, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        gridLayout_filter->addItem(horizontalSpacer, 0, 2, 1, 1);
-
-        label_filter_supplier = new QLabel(Form_filter);
-        label_filter_supplier->setObjectName(QStringLiteral("label_filter_supplier"));
-        label_filter_supplier->setMinimumSize(QSize(65, 20));
-        label_filter_supplier->setMaximumSize(QSize(65, 20));
-        label_filter_supplier->setBaseSize(QSize(65, 20));
-        label_filter_supplier->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        gridLayout_filter->addWidget(label_filter_supplier, 0, 3, 1, 1);
-
         comboBox_filter_supplier = new QComboBox(Form_filter);
         comboBox_filter_supplier->setObjectName(QStringLiteral("comboBox_filter_supplier"));
+        sizePolicy.setHeightForWidth(comboBox_filter_supplier->sizePolicy().hasHeightForWidth());
+        comboBox_filter_supplier->setSizePolicy(sizePolicy);
         comboBox_filter_supplier->setMinimumSize(QSize(80, 20));
         comboBox_filter_supplier->setBaseSize(QSize(80, 20));
 
-        gridLayout_filter->addWidget(comboBox_filter_supplier, 0, 4, 1, 1);
-
-        horizontalSpacer_3 = new QSpacerItem(2, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        gridLayout_filter->addItem(horizontalSpacer_3, 0, 5, 1, 1);
+        gridLayout_filter->addWidget(comboBox_filter_supplier, 0, 3, 1, 1);
 
         label_filter_mounting = new QLabel(Form_filter);
         label_filter_mounting->setObjectName(QStringLiteral("label_filter_mounting"));
@@ -110,36 +116,26 @@ public:
         label_filter_mounting->setBaseSize(QSize(65, 20));
         label_filter_mounting->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        gridLayout_filter->addWidget(label_filter_mounting, 0, 6, 1, 1);
-
-        comboBox_filter_mounting = new QComboBox(Form_filter);
-        comboBox_filter_mounting->setObjectName(QStringLiteral("comboBox_filter_mounting"));
-        comboBox_filter_mounting->setMinimumSize(QSize(80, 20));
-        comboBox_filter_mounting->setMaximumSize(QSize(80, 20));
-        comboBox_filter_mounting->setBaseSize(QSize(80, 20));
-
-        gridLayout_filter->addWidget(comboBox_filter_mounting, 0, 7, 1, 1);
-
-        horizontalSpacer_6 = new QSpacerItem(2, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        gridLayout_filter->addItem(horizontalSpacer_6, 0, 8, 1, 1);
-
-        label_filter_package = new QLabel(Form_filter);
-        label_filter_package->setObjectName(QStringLiteral("label_filter_package"));
-        label_filter_package->setMinimumSize(QSize(65, 20));
-        label_filter_package->setMaximumSize(QSize(65, 20));
-        label_filter_package->setBaseSize(QSize(65, 20));
-        label_filter_package->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        gridLayout_filter->addWidget(label_filter_package, 0, 9, 1, 1);
+        gridLayout_filter->addWidget(label_filter_mounting, 0, 4, 1, 1);
 
         comboBox_filter_package = new QComboBox(Form_filter);
         comboBox_filter_package->setObjectName(QStringLiteral("comboBox_filter_package"));
+        sizePolicy.setHeightForWidth(comboBox_filter_package->sizePolicy().hasHeightForWidth());
+        comboBox_filter_package->setSizePolicy(sizePolicy);
         comboBox_filter_package->setMinimumSize(QSize(80, 20));
         comboBox_filter_package->setMaximumSize(QSize(80, 20));
         comboBox_filter_package->setBaseSize(QSize(80, 20));
 
-        gridLayout_filter->addWidget(comboBox_filter_package, 0, 10, 1, 1);
+        gridLayout_filter->addWidget(comboBox_filter_package, 0, 7, 1, 1);
+
+        comboBox_filter_item_number = new QComboBox(Form_filter);
+        comboBox_filter_item_number->setObjectName(QStringLiteral("comboBox_filter_item_number"));
+        sizePolicy.setHeightForWidth(comboBox_filter_item_number->sizePolicy().hasHeightForWidth());
+        comboBox_filter_item_number->setSizePolicy(sizePolicy);
+        comboBox_filter_item_number->setMinimumSize(QSize(80, 20));
+        comboBox_filter_item_number->setBaseSize(QSize(80, 20));
+
+        gridLayout_filter->addWidget(comboBox_filter_item_number, 0, 1, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_filter);
@@ -184,10 +180,10 @@ public:
     void retranslateUi(QWidget *Form_filter)
     {
         Form_filter->setWindowTitle(QApplication::translate("Form_filter", "Form", nullptr));
-        label_filter_item_number->setText(QApplication::translate("Form_filter", "Item Number", nullptr));
-        label_filter_supplier->setText(QApplication::translate("Form_filter", "Supplier", nullptr));
-        label_filter_mounting->setText(QApplication::translate("Form_filter", "Mounting", nullptr));
         label_filter_package->setText(QApplication::translate("Form_filter", "Package", nullptr));
+        label_filter_supplier->setText(QApplication::translate("Form_filter", "Supplier", nullptr));
+        label_filter_item_number->setText(QApplication::translate("Form_filter", "Item Number", nullptr));
+        label_filter_mounting->setText(QApplication::translate("Form_filter", "Mounting", nullptr));
         pushButton_filter_reset->setText(QApplication::translate("Form_filter", "Reset Filter", nullptr));
         pushButton_filter_activate_filter->setText(QApplication::translate("Form_filter", "Activate Filter", nullptr));
     } // retranslateUi
