@@ -24,8 +24,8 @@ Form_filter::Form_filter(QWidget *parent) :
     Label_filter_couleur->setAlignment(Qt::AlignRight);
     Label_filter_configuration->setAlignment(Qt::AlignRight);
 
-    Label_filter_spacing->setFixedSize(65,20);
-    comboBox_filter_spacing->setFixedSize(80,20);
+    //Label_filter_spacing->setFixedSize(65,20);
+    //comboBox_filter_spacing->minimumSizeHint(); //setFixedSize(70,20);
 }
 
 Form_filter::~Form_filter(){
@@ -71,6 +71,9 @@ void Form_filter::set_connector_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_contacts,1,3);
     ui->gridLayout_filter->addWidget(Label_filter_spacing,1,4);
     ui->gridLayout_filter->addWidget(comboBox_filter_spacing,1,5);
+
+    ui->gridLayout_filter->setColumnMinimumWidth(4,65);
+    ui->gridLayout_filter->setColumnMinimumWidth(5,65);
 
     set_connector_combobox();
 

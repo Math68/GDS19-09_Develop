@@ -107,6 +107,8 @@ public slots:
     void DataBaseUpdate(QString NewCellValue);
     void DataBaseDeleteRow();
 
+    void SelectItemNumbers();
+
 signals:
     void notify_parts_id_to_update(QString ColumnName, QString CellData, QString PartIdNumber);
     void notify_parts_id_to_delete(QString CellData);

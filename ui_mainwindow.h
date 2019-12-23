@@ -70,9 +70,6 @@ public:
     QWidget *page9;
     QWidget *page10;
     QWidget *page11;
-    QFrame *frame_2;
-    QHBoxLayout *horizontalLayout_5;
-    QGroupBox *groupBox_4;
     QGroupBox *groupBox;
     QHBoxLayout *horizontalLayout_3;
     QTableView *tableView;
@@ -84,7 +81,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->setEnabled(true);
-        MainWindow->resize(639, 533);
+        MainWindow->resize(639, 521);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -226,125 +223,114 @@ public:
 
         groupBox_filtre = new QGroupBox(centralWidget);
         groupBox_filtre->setObjectName(QStringLiteral("groupBox_filtre"));
-        QSizePolicy sizePolicy4(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Minimum);
         sizePolicy4.setHorizontalStretch(0);
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(groupBox_filtre->sizePolicy().hasHeightForWidth());
         groupBox_filtre->setSizePolicy(sizePolicy4);
         groupBox_filtre->setMinimumSize(QSize(0, 0));
         horizontalLayout_2 = new QHBoxLayout(groupBox_filtre);
-        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 9);
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         frame = new QFrame(groupBox_filtre);
         frame->setObjectName(QStringLiteral("frame"));
+        QSizePolicy sizePolicy5(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
+        frame->setSizePolicy(sizePolicy5);
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         horizontalLayout_6 = new QHBoxLayout(frame);
-        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setSpacing(4);
         horizontalLayout_6->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
         stackedWidget = new QStackedWidget(frame);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setEnabled(true);
-        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Minimum);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(stackedWidget->sizePolicy().hasHeightForWidth());
-        stackedWidget->setSizePolicy(sizePolicy5);
+        QSizePolicy sizePolicy6(QSizePolicy::Preferred, QSizePolicy::Minimum);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(stackedWidget->sizePolicy().hasHeightForWidth());
+        stackedWidget->setSizePolicy(sizePolicy6);
         stackedWidget->setMinimumSize(QSize(0, 0));
         page1 = new QWidget();
         page1->setObjectName(QStringLiteral("page1"));
         page1->setEnabled(true);
-        QSizePolicy sizePolicy6(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        sizePolicy6.setHorizontalStretch(0);
-        sizePolicy6.setVerticalStretch(0);
-        sizePolicy6.setHeightForWidth(page1->sizePolicy().hasHeightForWidth());
-        page1->setSizePolicy(sizePolicy6);
+        QSizePolicy sizePolicy7(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(page1->sizePolicy().hasHeightForWidth());
+        page1->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page1);
         page2 = new QWidget();
         page2->setObjectName(QStringLiteral("page2"));
         page2->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page2->sizePolicy().hasHeightForWidth());
-        page2->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page2->sizePolicy().hasHeightForWidth());
+        page2->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page2);
         page3 = new QWidget();
         page3->setObjectName(QStringLiteral("page3"));
         page3->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page3->sizePolicy().hasHeightForWidth());
-        page3->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page3->sizePolicy().hasHeightForWidth());
+        page3->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page3);
         page4 = new QWidget();
         page4->setObjectName(QStringLiteral("page4"));
         page4->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page4->sizePolicy().hasHeightForWidth());
-        page4->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page4->sizePolicy().hasHeightForWidth());
+        page4->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page4);
         page5 = new QWidget();
         page5->setObjectName(QStringLiteral("page5"));
         page5->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page5->sizePolicy().hasHeightForWidth());
-        page5->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page5->sizePolicy().hasHeightForWidth());
+        page5->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page5);
         page6 = new QWidget();
         page6->setObjectName(QStringLiteral("page6"));
         page6->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page6->sizePolicy().hasHeightForWidth());
-        page6->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page6->sizePolicy().hasHeightForWidth());
+        page6->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page6);
         page7 = new QWidget();
         page7->setObjectName(QStringLiteral("page7"));
         page7->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page7->sizePolicy().hasHeightForWidth());
-        page7->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page7->sizePolicy().hasHeightForWidth());
+        page7->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page7);
         page8 = new QWidget();
         page8->setObjectName(QStringLiteral("page8"));
         page8->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page8->sizePolicy().hasHeightForWidth());
-        page8->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page8->sizePolicy().hasHeightForWidth());
+        page8->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page8);
         page9 = new QWidget();
         page9->setObjectName(QStringLiteral("page9"));
         page9->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page9->sizePolicy().hasHeightForWidth());
-        page9->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page9->sizePolicy().hasHeightForWidth());
+        page9->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page9);
         page10 = new QWidget();
         page10->setObjectName(QStringLiteral("page10"));
         page10->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page10->sizePolicy().hasHeightForWidth());
-        page10->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page10->sizePolicy().hasHeightForWidth());
+        page10->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page10);
         page11 = new QWidget();
         page11->setObjectName(QStringLiteral("page11"));
         page11->setEnabled(true);
-        sizePolicy6.setHeightForWidth(page11->sizePolicy().hasHeightForWidth());
-        page11->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(page11->sizePolicy().hasHeightForWidth());
+        page11->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page11);
 
         horizontalLayout_6->addWidget(stackedWidget);
 
 
         horizontalLayout_2->addWidget(frame);
-
-        frame_2 = new QFrame(groupBox_filtre);
-        frame_2->setObjectName(QStringLiteral("frame_2"));
-        frame_2->setFrameShape(QFrame::StyledPanel);
-        frame_2->setFrameShadow(QFrame::Raised);
-        horizontalLayout_5 = new QHBoxLayout(frame_2);
-        horizontalLayout_5->setSpacing(6);
-        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        horizontalLayout_5->setContentsMargins(0, 3, 9, 3);
-        groupBox_4 = new QGroupBox(frame_2);
-        groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
-
-        horizontalLayout_5->addWidget(groupBox_4);
-
-
-        horizontalLayout_2->addWidget(frame_2);
 
 
         verticalLayout->addWidget(groupBox_filtre);
@@ -360,11 +346,8 @@ public:
         tableView = new QTableView(groupBox);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setEnabled(true);
-        QSizePolicy sizePolicy7(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-        sizePolicy7.setHorizontalStretch(0);
-        sizePolicy7.setVerticalStretch(0);
-        sizePolicy7.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
-        tableView->setSizePolicy(sizePolicy7);
+        sizePolicy4.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
+        tableView->setSizePolicy(sizePolicy4);
         tableView->setMinimumSize(QSize(0, 250));
         tableView->setTabletTracking(false);
         tableView->setAutoFillBackground(false);
@@ -411,7 +394,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(10);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -419,7 +402,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V4 - 25/11/2019", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V4 - 22/12/2019", nullptr));
         groupBox_component->setTitle(QApplication::translate("MainWindow", "Component", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Search by Id or Item Number", nullptr));
         label->setText(QApplication::translate("MainWindow", "Id", nullptr));
@@ -441,7 +424,6 @@ public:
         pushButton_search_component->setText(QApplication::translate("MainWindow", "Search", nullptr));
         pushButton_store_component->setText(QApplication::translate("MainWindow", "Store", nullptr));
         groupBox_filtre->setTitle(QApplication::translate("MainWindow", "Filter", nullptr));
-        groupBox_4->setTitle(QApplication::translate("MainWindow", "Overview", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Editor", nullptr));
     } // retranslateUi
 

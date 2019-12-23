@@ -103,7 +103,7 @@ void Dialog_store_windows::set_capacitor_store_window()
 
 void Dialog_store_windows::set_connector_store_window()
 {
-     SelectedComponent=Connector;
+    SelectedComponent=Connector;
 
     this->setWindowTitle("Store Connector");
 
@@ -239,7 +239,7 @@ void Dialog_store_windows::set_inductor_store_window()
 
 void Dialog_store_windows::set_integrated_circuit_store_window()
 {
-     SelectedComponent=IntegratedCircuit;
+    SelectedComponent=IntegratedCircuit;
 
     this->setWindowTitle("Store Integrated Circuit");
 
@@ -465,10 +465,8 @@ void Dialog_store_windows::set_transistor_store_window()
     Combobox_store_current->setModel(model4);
 }
 
-
 void Dialog_store_windows::on_pushButton_store_save_clicked()
 {
-
     if(SelectedComponent==Capacitor)
     {
         //QMessageBox::warning(this,tr(" "),tr("Capacitor is selected !!!"));

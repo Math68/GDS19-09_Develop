@@ -47,18 +47,32 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!GDS19_DataBase.OpenConnection())
         QMessageBox::warning(this,tr(" "),tr("Database opening failed !!!"));
 
+    SelectItemNumbers();
+
+    /*
     QSqlQueryModel *model2=new QSqlQueryModel();
     QSqlQuery qry2;
     qry2.exec("SELECT DISTINCT Item_number FROM Parts ORDER BY Item_number");
 
     model2->setQuery(qry2);
     ui->comboBox_search_Item_Number->setModel(model2);
+    */
 }
 
 MainWindow::~MainWindow()
 {
     GDS19_DataBase.CloseConnection();
     delete ui;
+}
+
+void MainWindow::SelectItemNumbers()
+{
+    QSqlQueryModel *model2=new QSqlQueryModel();
+    QSqlQuery qry2;
+    qry2.exec("SELECT DISTINCT Item_number FROM Parts ORDER BY Item_number");
+
+    model2->setQuery(qry2);
+    ui->comboBox_search_Item_Number->setModel(model2);
 }
 
 // *****************************************************
@@ -69,15 +83,41 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_search_component_clicked()
 {
+    //SelectItemNumbers();
+
     if(ui->comboBox_component->currentText()=="Choose") // page 1, indice 0
     {
         ui->stackedWidget->setCurrentIndex(0);
         choose_filter_layout = new QVBoxLayout;
         ui->page1->setLayout(choose_filter_layout);
-        QMessageBox::warning(this,tr(" "),tr("Choose a component !!!"));
+
+        qDebug() << ui->lineEdit_search_Id->text() << ui->comboBox_search_Item_Number->currentText();
+
+        if(ui->lineEdit_search_Id->text()=="" && ui->comboBox_search_Item_Number->currentText()=="" )
+        {
+            QMessageBox::warning(this,tr(" "),tr("Choose a component !!!"));
+        }
+        else {
+            /*
+            if(ui->lineEdit_search_Id->text()!="")
+            {
+
+            }
+            else if(ui->comboBox_search_Item_Number->currentText()!="")
+            {
+                SelectItemNumbers();
+
+            }
+            */
+            SelectItemNumbers();
+            model->clear();
+            ui->tableView->setModel(model);
+        }
     }
     else if(ui->comboBox_component->currentText()=="Capacitor")  // page 2, indice 1
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(1);
         capacitorfilter->set_capacitor_filter();
         capacitor_filter_layout = new QVBoxLayout;
@@ -88,6 +128,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Connector") // page 3, indice 2
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(2);
         connectorfilter->set_connector_filter();
         connector_filter_layout = new QVBoxLayout;
@@ -97,6 +139,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Diode") // page 4, indice 3
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(3);
         diodefilter->set_diode_filter();
         diode_filter_layout = new QVBoxLayout;
@@ -106,6 +150,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Inductor")  // page 5, indice 4
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(4);
         inductorfilter->set_inductor_filter();
         inductor_filter_layout = new QVBoxLayout;
@@ -115,6 +161,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Integrated Circuit")    // page 6, indice 5
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(5);
         integratedcircuitfilter->set_integrated_circuit_filter();
         integrated_circuit_filter_layout = new QVBoxLayout;
@@ -124,6 +172,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Led")   // page 7, indice 6
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(6);
         ledfilter->set_led_filter();
         led_filter_layout = new QVBoxLayout;
@@ -133,6 +183,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Quartz")    // page 8, indice 7
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(7);
         quartzfilter->set_quartz_filter();
         quartz_filter_layout = new QVBoxLayout;
@@ -142,6 +194,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Relay") // page 9, indice 8
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(8);
         relayfilter->set_relay_filter();
         relay_filter_layout = new QVBoxLayout;
@@ -151,6 +205,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Resistor")  // page 10, indice 9
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(9);
         resistorfilter->set_resistor_filter();
         resistor_filter_layout = new QVBoxLayout;
@@ -160,6 +216,8 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Transistor")    // page 11, indice 10
     {
+        SelectItemNumbers();
+
         ui->stackedWidget->setCurrentIndex(10);
         transistorfilter->set_transistor_filter();
         transistor_filter_layout = new QVBoxLayout;
@@ -288,6 +346,8 @@ void MainWindow::DataBaseUpdate(QString NewCellValue){
     QSqlQuery query;
     query.exec("UPDATE Parts SET '"+ColumnName+"'='"+NewCellValue+"' WHERE Parts_id='"+PartIdNumber+"' ");
     // Table has to be refresch
+
+    // 22/12/19
     on_pushButton_search_component_clicked();
 }
 
@@ -295,9 +355,10 @@ void MainWindow::DataBaseDeleteRow(){
     QSqlQuery query;
     query.exec("DELETE FROM Parts WHERE Parts_id='"+PartIdNumber+"' ");
     // Table has to be refresch
+
+    // 22/12/19
     on_pushButton_search_component_clicked();
 }
-
 
 //********************************************************************************
 //
