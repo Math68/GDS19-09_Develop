@@ -467,54 +467,43 @@ void Dialog_store_windows::set_transistor_store_window()
 
 void Dialog_store_windows::on_pushButton_store_save_clicked()
 {
+    QString NewItemNumber;
+
     if(SelectedComponent==Capacitor)
-    {
-        //QMessageBox::warning(this,tr(" "),tr("Capacitor is selected !!!"));
-         save_capacitor();
-    }
+        save_capacitor();
+
     else if(SelectedComponent==Connector)
-    {
-         //QMessageBox::warning(this,tr(" "),tr("Connector is selected !!!"));
          save_connector();
-    }
+
     else if(SelectedComponent==Diode)
-    {
          save_diode();
-    }
+
     else if(SelectedComponent==Inductor)
-    {
         save_inductor();
-    }
+
     else if(SelectedComponent==IntegratedCircuit)
-    {
         save_integrated_circuit();
-    }
+
     else if(SelectedComponent==Led)
-    {
         save_led();
-    }
+
     else if(SelectedComponent==Quartz)
-    {
         save_quartz();
-    }
+
     else if(SelectedComponent==Relay)
-    {
         save_relay();
-    }
+
     else if(SelectedComponent==Resistor)
-    {
         save_resistor();
-    }
+
     else if(SelectedComponent==Transistor)
-    {
         save_transistor();
-    }
 
-    notify_component_has_been_saved();
-
+    NewItemNumber=ui->lineEdit_store_item_number->text();
+    qDebug() << NewItemNumber;
+    notify_component_has_been_saved(NewItemNumber);
     close();
 }
-
 
 void Dialog_store_windows::on_pushButton_store_cancel_clicked()
 {

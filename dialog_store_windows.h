@@ -52,7 +52,7 @@ public slots:
     void on_pushButton_store_cancel_clicked();
 
 signals:
-    void notify_component_has_been_saved();
+    void notify_component_has_been_saved(QString _NewItemNumber);
 
 private slots:
   //  void on_pushButton_AddItem_clicked();

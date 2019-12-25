@@ -48,15 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
         QMessageBox::warning(this,tr(" "),tr("Database opening failed !!!"));
 
     SelectItemNumbers();
-
-    /*
-    QSqlQueryModel *model2=new QSqlQueryModel();
-    QSqlQuery qry2;
-    qry2.exec("SELECT DISTINCT Item_number FROM Parts ORDER BY Item_number");
-
-    model2->setQuery(qry2);
-    ui->comboBox_search_Item_Number->setModel(model2);
-    */
 }
 
 MainWindow::~MainWindow()
@@ -83,7 +74,7 @@ void MainWindow::SelectItemNumbers()
 
 void MainWindow::on_pushButton_search_component_clicked()
 {
-    //SelectItemNumbers();
+    SelectItemNumbers();
 
     if(ui->comboBox_component->currentText()=="Choose") // page 1, indice 0
     {
@@ -91,33 +82,10 @@ void MainWindow::on_pushButton_search_component_clicked()
         choose_filter_layout = new QVBoxLayout;
         ui->page1->setLayout(choose_filter_layout);
 
-        qDebug() << ui->lineEdit_search_Id->text() << ui->comboBox_search_Item_Number->currentText();
-
-        if(ui->lineEdit_search_Id->text()=="" && ui->comboBox_search_Item_Number->currentText()=="" )
-        {
-            QMessageBox::warning(this,tr(" "),tr("Choose a component !!!"));
-        }
-        else {
-            /*
-            if(ui->lineEdit_search_Id->text()!="")
-            {
-
-            }
-            else if(ui->comboBox_search_Item_Number->currentText()!="")
-            {
-                SelectItemNumbers();
-
-            }
-            */
-            SelectItemNumbers();
-            model->clear();
-            ui->tableView->setModel(model);
-        }
+        QMessageBox::warning(this,tr(" "),tr("Choose a component !!!"));
     }
     else if(ui->comboBox_component->currentText()=="Capacitor")  // page 2, indice 1
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(1);
         capacitorfilter->set_capacitor_filter();
         capacitor_filter_layout = new QVBoxLayout;
@@ -128,8 +96,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Connector") // page 3, indice 2
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(2);
         connectorfilter->set_connector_filter();
         connector_filter_layout = new QVBoxLayout;
@@ -139,8 +105,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Diode") // page 4, indice 3
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(3);
         diodefilter->set_diode_filter();
         diode_filter_layout = new QVBoxLayout;
@@ -150,8 +114,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Inductor")  // page 5, indice 4
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(4);
         inductorfilter->set_inductor_filter();
         inductor_filter_layout = new QVBoxLayout;
@@ -161,8 +123,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Integrated Circuit")    // page 6, indice 5
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(5);
         integratedcircuitfilter->set_integrated_circuit_filter();
         integrated_circuit_filter_layout = new QVBoxLayout;
@@ -172,8 +132,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Led")   // page 7, indice 6
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(6);
         ledfilter->set_led_filter();
         led_filter_layout = new QVBoxLayout;
@@ -183,8 +141,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Quartz")    // page 8, indice 7
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(7);
         quartzfilter->set_quartz_filter();
         quartz_filter_layout = new QVBoxLayout;
@@ -194,8 +150,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Relay") // page 9, indice 8
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(8);
         relayfilter->set_relay_filter();
         relay_filter_layout = new QVBoxLayout;
@@ -205,8 +159,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Resistor")  // page 10, indice 9
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(9);
         resistorfilter->set_resistor_filter();
         resistor_filter_layout = new QVBoxLayout;
@@ -216,8 +168,6 @@ void MainWindow::on_pushButton_search_component_clicked()
     }
     else if(ui->comboBox_component->currentText()=="Transistor")    // page 11, indice 10
     {
-        SelectItemNumbers();
-
         ui->stackedWidget->setCurrentIndex(10);
         transistorfilter->set_transistor_filter();
         transistor_filter_layout = new QVBoxLayout;
@@ -266,6 +216,12 @@ void MainWindow::onRefreshTable(QString dataToRefresh)
     displayTable(dataToRefresh);
 }
 
+void MainWindow::ClearTable()
+{
+    model->clear();
+    ui->tableView->setModel(model);
+}
+
 // *****************************************************
 //
 //  STORE
@@ -279,7 +235,7 @@ void MainWindow::on_pushButton_store_component_clicked()
     }
     else{
         Dialog_store_windows store_window;
-        connect(&store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::on_pushButton_search_component_clicked);
+        connect(&store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::UpdateTableRow);
 
         if(ui->comboBox_component->currentText()=="Capacitor")
             store_window.set_capacitor_store_window();
@@ -323,7 +279,6 @@ void MainWindow::on_pushButton_store_component_clicked()
 
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
-
     ColumnName = model->record().fieldName(index.column());  // Recupère le nom de la colonne
     CellData = ui->tableView->model()->data(index).toString();  // Recupère le contenu de la cellule
     QModelIndex PartIdIndex = model->index(index.row(),0);  // crétion d'un index pour la colonne Parts_Id
@@ -343,21 +298,25 @@ void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 }
 
 void MainWindow::DataBaseUpdate(QString NewCellValue){
-    QSqlQuery query;
-    query.exec("UPDATE Parts SET '"+ColumnName+"'='"+NewCellValue+"' WHERE Parts_id='"+PartIdNumber+"' ");
-    // Table has to be refresch
 
-    // 22/12/19
-    on_pushButton_search_component_clicked();
+    QString _Component;
+    QSqlQuery query;
+
+    query.exec("UPDATE Parts SET '"+ColumnName+"'='"+NewCellValue+"' WHERE Parts_id='"+PartIdNumber+"' ");
+
+    // RefreschRow
+    _Component=GetComponentFromPartId(PartIdNumber);
+    DisplayRow(_Component, PartIdNumber);
+    SelectItemNumbers();
 }
 
 void MainWindow::DataBaseDeleteRow(){
     QSqlQuery query;
     query.exec("DELETE FROM Parts WHERE Parts_id='"+PartIdNumber+"' ");
-    // Table has to be refresch
 
-    // 22/12/19
-    on_pushButton_search_component_clicked();
+    // Table has to be refresch
+    ClearTable();
+    SelectItemNumbers();
 }
 
 //********************************************************************************
@@ -369,126 +328,133 @@ void MainWindow::DataBaseDeleteRow(){
 void MainWindow::on_pushButton_SearchBy_clicked()
 {
     int SearchIdState=-1, SearchItemNumberState=-1;
-    QString LookingForItemNumber="", LookingforPartId, ItemNumber="", _Component="", Reachdata="", PartId="";
-    QSqlQuery qry;
-
-    qDebug() << SearchIdState << SearchItemNumberState;
+    QString LookingForItemNumber="", ItemNumber="", _Component="", Reachdata="", _PartId="";
 
     if(ui->lineEdit_search_Id->text().isEmpty())
             SearchIdState=0;
     else SearchIdState=1;
 
-    qDebug() << SearchIdState;
-
     if(ui->comboBox_search_Item_Number->currentText().isEmpty() || ui->comboBox_search_Item_Number->currentText().isNull())
         SearchItemNumberState=0;
     else SearchItemNumberState=1;
 
-    qDebug() << SearchItemNumberState;
-
-    //qDebug() << ui->lineEdit_search_Id->text() << ui->comboBox_search_Item_Number->currentText();
-    //QMessageBox::warning(this,tr(" "),tr("Check if working !!!"));
-
     if(SearchIdState==0 && SearchItemNumberState==0){
+        ClearTable();
         QMessageBox::warning(this,tr(" "),tr("Make a choose!!! You have to select an Item number or inform the Id box!!!"));
     }
     else if (SearchIdState==1 && SearchItemNumberState==1){
+        ClearTable();
         QMessageBox::warning(this,tr(" "),tr("To match Item selected, please make your choose !!!"));
     }
     else if (SearchIdState==1 && SearchItemNumberState==0){
-
-        PartId=ui->lineEdit_search_Id->text();
-        Reachdata ="SELECT Component FROM Parts WHERE Parts_id = '%1'";
+        _PartId=ui->lineEdit_search_Id->text();
 
         if(ui->lineEdit_search_Id->text().toInt() < 100)
         {
-            //qDebug() << "This Part Id doesnt exist !!! Choose a value >=100 !!!";
+            ClearTable();
             QMessageBox::warning(this,tr(" "),tr("This Part Id doesnt exist !!! Choose a value >= 100 !!!"));
         }
         else{
-            qry.exec(Reachdata.arg(PartId));
-            qry.first();
-            _Component=qry.value(0).toString();
-            qDebug()<<_Component;
+            _Component=GetComponentFromPartId(_PartId);
             if(_Component==""){
+                ClearTable();
                 QMessageBox::warning(this,tr(" "),tr("This Part Id doesnt exist !!!"));
             }
             else{
-
-                if(_Component=="Capacitor"){
-                    LookingforPartId=SearchCapacitorbyPartId.arg(PartId);
-                }
-                else if(_Component=="Connector"){
-                    LookingforPartId=SearchConnectorbyPartId.arg(PartId);
-                }
-                else if(_Component=="Diode"){
-                    LookingforPartId=SearchDiodebyPartId.arg(PartId);
-                }
-                else if(_Component=="Inductor"){
-                    LookingforPartId=SearchInductorbyPartId.arg(PartId);
-                }
-                else if(_Component=="Integrated Circuit"){
-                    LookingforPartId=SearchIntegratedCircuitbyPartId.arg(PartId);
-                }
-                else if(_Component=="Led"){
-                    LookingforPartId=SearchLedbyPartId.arg(PartId);
-                }
-                else if(_Component=="Quartz"){
-                    LookingforPartId=SearchQuartzbyPartId.arg(PartId);
-                }
-                else if(_Component=="Relay"){
-                    LookingforPartId=SearchRelaybyPartId.arg(PartId);
-                }
-                else if(_Component=="Resistor"){
-                    LookingforPartId=SearchResistorbyPartId.arg(PartId);
-                }
-                else if(_Component=="Transistor"){
-                    LookingforPartId=SearchTransistorbyPartId.arg(PartId);
-                }
-                displayTable(LookingforPartId);
+                DisplayRow(_Component, _PartId);
             }
         }
     }
     else if (SearchIdState==0 && SearchItemNumberState==1){
 
         ItemNumber=ui->comboBox_search_Item_Number->currentText();
-
-        Reachdata ="SELECT Component FROM Parts WHERE Item_number = '%1'";
-        qry.exec(Reachdata.arg(ItemNumber));
-        qry.first();
-        _Component=qry.value(0).toString();
-        qDebug()<<_Component;
-
-        if(_Component=="Capacitor"){
-            LookingForItemNumber=SearchCapacitorbyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Connector"){
-            LookingForItemNumber=SearchConnectorbyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Diode"){
-            LookingForItemNumber=SearchDiodebyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Inductor"){
-            LookingForItemNumber=SearchInductorbyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Integrated Circuit"){
-            LookingForItemNumber=SearchIntegratedCircuitsbyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Led"){
-            LookingForItemNumber=SearchLedbyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Quartz"){
-            LookingForItemNumber=SearchQuartzbyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Relay"){
-            LookingForItemNumber=SearchRelaybyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Resistor"){
-            LookingForItemNumber=SearchResistorbyItemNumber.arg(ItemNumber);
-        }
-        else if(_Component=="Transistor"){
-            LookingForItemNumber=SearchTransistorbyItemNumber.arg(ItemNumber);
-        }
-        displayTable(LookingForItemNumber);
+        _Component=GetComponentFromItemNumber(ItemNumber);
+        _PartId=GetPartIdFromItemNumber(ItemNumber);
+        DisplayRow(_Component, _PartId);
     }
+}
+
+void MainWindow::DisplayRow(QString Component, QString PartId)
+{
+    QString LookingforPartId;
+
+    if(Component=="Capacitor"){
+        LookingforPartId=SearchCapacitorbyPartId.arg(PartId);
+    }
+    else if(Component=="Connector"){
+        LookingforPartId=SearchConnectorbyPartId.arg(PartId);
+    }
+    else if(Component=="Diode"){
+        LookingforPartId=SearchDiodebyPartId.arg(PartId);
+    }
+    else if(Component=="Inductor"){
+        LookingforPartId=SearchInductorbyPartId.arg(PartId);
+    }
+    else if(Component=="Integrated Circuit"){
+        LookingforPartId=SearchIntegratedCircuitbyPartId.arg(PartId);
+    }
+    else if(Component=="Led"){
+        LookingforPartId=SearchLedbyPartId.arg(PartId);
+    }
+    else if(Component=="Quartz"){
+        LookingforPartId=SearchQuartzbyPartId.arg(PartId);
+    }
+    else if(Component=="Relay"){
+        LookingforPartId=SearchRelaybyPartId.arg(PartId);
+    }
+    else if(Component=="Resistor"){
+        LookingforPartId=SearchResistorbyPartId.arg(PartId);
+    }
+    else if(Component=="Transistor"){
+        LookingforPartId=SearchTransistorbyPartId.arg(PartId);
+    }
+    displayTable(LookingforPartId);
+    SelectItemNumbers();
+}
+
+QString MainWindow::GetComponentFromPartId(QString PartId)
+{
+    QString Component, Reachdata;
+    QSqlQuery qry;
+
+    Reachdata ="SELECT Component FROM Parts WHERE Parts_id = '%1'";
+    qry.exec(Reachdata.arg(PartId));
+    qry.first();
+    Component=qry.value(0).toString();
+    return Component;
+}
+
+QString MainWindow::GetComponentFromItemNumber(QString ItemNumber)
+{
+    QString Component, Reachdata;
+    QSqlQuery qry;
+
+    Reachdata ="SELECT Component FROM Parts WHERE Item_number = '%1'";
+    qry.exec(Reachdata.arg(ItemNumber));
+    qry.first();
+    Component=qry.value(0).toString();
+    qDebug()<<Component;
+    return Component;
+}
+
+QString MainWindow::GetPartIdFromItemNumber(QString ItemNumber)
+{
+    QString PartId, Reachdata;
+    QSqlQuery qry;
+
+    Reachdata ="SELECT Parts_id FROM Parts WHERE Item_number = '%1'";
+    qry.exec(Reachdata.arg(ItemNumber));
+    qry.first();
+    PartId=qry.value(0).toString();
+    return PartId;
+}
+
+void MainWindow::UpdateTableRow(QString NewItemNumber)
+{
+    QString _Component, _PartId;
+
+    _Component=GetComponentFromItemNumber(NewItemNumber);
+    _PartId=GetPartIdFromItemNumber(NewItemNumber);
+
+    DisplayRow(_Component, _PartId);
 }
