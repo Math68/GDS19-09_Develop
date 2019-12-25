@@ -188,7 +188,6 @@ void Form_filter::FillComboBox(QString _String, QString _Item, QString _Componen
     //QString SelectData = "SELECT DISTINCT %1 FROM Parts WHERE Component='%2' ORDER BY %1";
 
     QSqlQuery qry;
-    //qry.exec(_String.arg(_Item).arg(_Component));
     qry.exec(_String.arg(_Item, _Component));
     QSqlQueryModel *Model = new QSqlQueryModel;
     Model->setQuery(qry);

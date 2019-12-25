@@ -1,4 +1,4 @@
-// 16/11/2019
+// 25/12/2019
 #include <QMessageBox>
 #include <QDialog>
 #include <QSqlDatabase>
@@ -455,6 +455,5 @@ void MainWindow::UpdateTableRow(QString NewItemNumber)
 
     _Component=GetComponentFromItemNumber(NewItemNumber);
     _PartId=GetPartIdFromItemNumber(NewItemNumber);
-
     DisplayRow(_Component, _PartId);
 }

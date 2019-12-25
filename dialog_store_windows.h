@@ -46,6 +46,7 @@ public:
     void save_transistor();
 
     void FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox);
+    void FillComboBoxOneItem(QString _String, QString _Item, QComboBox *Combobox);
 
 public slots:
     void on_pushButton_store_save_clicked();
@@ -54,9 +55,7 @@ public slots:
 signals:
     void notify_component_has_been_saved(QString _NewItemNumber);
 
-private slots:
-  //  void on_pushButton_AddItem_clicked();
-//    void addItemToCombobox(QString, QString);
+
 private:
     Ui::Dialog_store_windows *ui;
 
@@ -89,6 +88,8 @@ private:
     // "SELECT DISTINCT Voltage FROM Parts WHERE Component='Capacitor' ORDER BY Voltage"
     //QString SelectData="SELECT DISTINCT %1 FROM parts WHERE %2 != 'NULL' ORDER BY %1";
     QString SelectData="SELECT DISTINCT %1 FROM parts WHERE Component = '%2' ORDER BY %1";
+    //SELECT DISTINCT Mounting FROM parts ORDER BY Mounting");
+    QString SelectPartsData="SELECT DISTINCT %1 FROM parts ORDER BY %1";
 };
 
 #endif // DIALOG_STORE_WINDOWS_H
