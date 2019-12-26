@@ -28,7 +28,6 @@ signals:
     void notify_DatabaseToUpdate(QString NewCellValue);
 
 private slots:
-
     void on_buttonBox_accepted();
 
 private:

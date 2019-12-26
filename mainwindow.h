@@ -55,7 +55,8 @@ public:
     QVBoxLayout *transistor_filter_layout=nullptr;
 
     QSqlQuery *qry;
-    QSqlQueryModel *model;
+    QSqlQueryModel *model = new QSqlQueryModel();
+
 
     QString ColumnName, PartIdNumber, CellData;
 

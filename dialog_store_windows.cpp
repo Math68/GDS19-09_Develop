@@ -285,6 +285,10 @@ void Dialog_store_windows::on_pushButton_store_save_clicked()
 {
     QString NewItemNumber;
 
+    NewItemNumber=ui->lineEdit_store_item_number->text();
+    qDebug() << NewItemNumber;
+    // Check Item Number
+
     if(SelectedComponent==Capacitor)
         save_capacitor();
 
@@ -315,8 +319,6 @@ void Dialog_store_windows::on_pushButton_store_save_clicked()
     else if(SelectedComponent==Transistor)
         save_transistor();
 
-    NewItemNumber=ui->lineEdit_store_item_number->text();
-    qDebug() << NewItemNumber;
     notify_component_has_been_saved(NewItemNumber);
     close();
 }

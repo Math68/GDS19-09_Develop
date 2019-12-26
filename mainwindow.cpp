@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     capacitorfilter = new Form_filter;  
     connectorfilter = new Form_filter;
     diodefilter = new Form_filter;
@@ -47,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!GDS19_DataBase.OpenConnection())
         QMessageBox::warning(this,tr(" "),tr("Database opening failed !!!"));
 
+    ClearTable();
     SelectItemNumbers();
 }
 
@@ -81,8 +83,8 @@ void MainWindow::on_pushButton_search_component_clicked()
         ui->stackedWidget->setCurrentIndex(0);
         choose_filter_layout = new QVBoxLayout;
         ui->page1->setLayout(choose_filter_layout);
-
-        QMessageBox::warning(this,tr(" "),tr("Choose a component !!!"));
+        ClearTable();
+        QMessageBox::warning(this,tr(" "),tr("Select a component !!!"));
     }
     else if(ui->comboBox_component->currentText()=="Capacitor")  // page 2, indice 1
     {
@@ -182,7 +184,7 @@ void MainWindow::displayTable(QString data)
     qry = new QSqlQuery;
     qry->exec(data);
 
-    model = new QSqlQueryModel();
+//    model = new QSqlQueryModel();
     model->setQuery(*qry);
 
     ui->tableView->setModel(model);
@@ -231,7 +233,13 @@ void MainWindow::ClearTable()
 void MainWindow::on_pushButton_store_component_clicked()
 {
     if(ui->comboBox_component->currentText()=="Choose"){
-        QMessageBox::warning(this,tr(" "),tr("Choose a component !!!"));
+
+        ui->stackedWidget->setCurrentIndex(0);
+        choose_filter_layout = new QVBoxLayout;
+        ui->page1->setLayout(choose_filter_layout);
+
+        ClearTable();
+        QMessageBox::warning(this,tr(" "),tr("Select a component !!!"));
     }
     else{
         Dialog_store_windows store_window;
@@ -340,11 +348,11 @@ void MainWindow::on_pushButton_SearchBy_clicked()
 
     if(SearchIdState==0 && SearchItemNumberState==0){
         ClearTable();
-        QMessageBox::warning(this,tr(" "),tr("Make a choose!!! You have to select an Item number or inform the Id box!!!"));
+        QMessageBox::warning(this,tr(" "),tr("Make your choice!!! You have to select an Item number or fill in the Id box!!!"));
     }
     else if (SearchIdState==1 && SearchItemNumberState==1){
         ClearTable();
-        QMessageBox::warning(this,tr(" "),tr("To match Item selected, please make your choose !!!"));
+        QMessageBox::warning(this,tr(" "),tr("To match Item selected, please make your choice !!!"));
     }
     else if (SearchIdState==1 && SearchItemNumberState==0){
         _PartId=ui->lineEdit_search_Id->text();
@@ -352,13 +360,13 @@ void MainWindow::on_pushButton_SearchBy_clicked()
         if(ui->lineEdit_search_Id->text().toInt() < 100)
         {
             ClearTable();
-            QMessageBox::warning(this,tr(" "),tr("This Part Id doesnt exist !!! Choose a value >= 100 !!!"));
+            QMessageBox::warning(this,tr(" "),tr("This Part Id does not exist !!! Choose a value >= 100 !!!"));
         }
         else{
             _Component=GetComponentFromPartId(_PartId);
             if(_Component==""){
                 ClearTable();
-                QMessageBox::warning(this,tr(" "),tr("This Part Id doesnt exist !!!"));
+                QMessageBox::warning(this,tr(" "),tr("This Part Id does not exist !!!"));
             }
             else{
                 DisplayRow(_Component, _PartId);

@@ -55,7 +55,6 @@ public slots:
 signals:
     void notify_component_has_been_saved(QString _NewItemNumber);
 
-
 private:
     Ui::Dialog_store_windows *ui;
 

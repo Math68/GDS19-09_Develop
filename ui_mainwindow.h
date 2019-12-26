@@ -402,7 +402,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V4 - 25/12/2019", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V4 - 26/12/2019", nullptr));
         groupBox_component->setTitle(QApplication::translate("MainWindow", "Component", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Search by Id or Item Number", nullptr));
         label->setText(QApplication::translate("MainWindow", "Id", nullptr));
