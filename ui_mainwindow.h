@@ -191,6 +191,9 @@ public:
         comboBox_component->addItem(QString());
         comboBox_component->addItem(QString());
         comboBox_component->addItem(QString());
+        comboBox_component->addItem(QString());
+        comboBox_component->addItem(QString());
+        comboBox_component->addItem(QString());
         comboBox_component->setObjectName(QStringLiteral("comboBox_component"));
         sizePolicy1.setHeightForWidth(comboBox_component->sizePolicy().hasHeightForWidth());
         comboBox_component->setSizePolicy(sizePolicy1);
@@ -402,7 +405,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V4 - 26/12/2019", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gestion de Stock: GDS19_V4 - 03/09/2020", nullptr));
         groupBox_component->setTitle(QApplication::translate("MainWindow", "Component", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Search by Id or Item Number", nullptr));
         label->setText(QApplication::translate("MainWindow", "Id", nullptr));
@@ -413,13 +416,16 @@ public:
         comboBox_component->setItemText(1, QApplication::translate("MainWindow", "Capacitor", nullptr));
         comboBox_component->setItemText(2, QApplication::translate("MainWindow", "Connector", nullptr));
         comboBox_component->setItemText(3, QApplication::translate("MainWindow", "Diode", nullptr));
-        comboBox_component->setItemText(4, QApplication::translate("MainWindow", "Inductor", nullptr));
-        comboBox_component->setItemText(5, QApplication::translate("MainWindow", "Integrated Circuit", nullptr));
-        comboBox_component->setItemText(6, QApplication::translate("MainWindow", "Led", nullptr));
-        comboBox_component->setItemText(7, QApplication::translate("MainWindow", "Quartz", nullptr));
-        comboBox_component->setItemText(8, QApplication::translate("MainWindow", "Relay", nullptr));
-        comboBox_component->setItemText(9, QApplication::translate("MainWindow", "Resistor", nullptr));
-        comboBox_component->setItemText(10, QApplication::translate("MainWindow", "Transistor", nullptr));
+        comboBox_component->setItemText(4, QApplication::translate("MainWindow", "Fuse", nullptr));
+        comboBox_component->setItemText(5, QApplication::translate("MainWindow", "Inductor", nullptr));
+        comboBox_component->setItemText(6, QApplication::translate("MainWindow", "Integrated Circuit", nullptr));
+        comboBox_component->setItemText(7, QApplication::translate("MainWindow", "Led", nullptr));
+        comboBox_component->setItemText(8, QApplication::translate("MainWindow", "Quartz", nullptr));
+        comboBox_component->setItemText(9, QApplication::translate("MainWindow", "Relay", nullptr));
+        comboBox_component->setItemText(10, QApplication::translate("MainWindow", "Resistor", nullptr));
+        comboBox_component->setItemText(11, QApplication::translate("MainWindow", "Switch", nullptr));
+        comboBox_component->setItemText(12, QApplication::translate("MainWindow", "Transformator", nullptr));
+        comboBox_component->setItemText(13, QApplication::translate("MainWindow", "Transistor", nullptr));
 
         pushButton_search_component->setText(QApplication::translate("MainWindow", "Search", nullptr));
         pushButton_store_component->setText(QApplication::translate("MainWindow", "Store", nullptr));

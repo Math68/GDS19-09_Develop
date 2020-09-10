@@ -109,6 +109,11 @@ void Form_filter::set_diode_filter(){
     clearlists();
 }
 
+void Form_filter::set_fuse_filter(){
+    componentToFilter=Fuse;
+
+}
+
 void Form_filter::set_inductor_filter(){
 
 }

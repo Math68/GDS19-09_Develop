@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     relayfilter = new Form_filter;
     resistorfilter = new Form_filter;
     transistorfilter = new Form_filter;
+    fusefilter= new Form_filter;
 
     //connect(capacitorfilter, SIGNAL(notifyRefreshTable(QString)) , this, SLOT(onRefreshCapacitorTable(QString)));
     connect(capacitorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
@@ -176,6 +177,15 @@ void MainWindow::on_pushButton_search_component_clicked()
         transistor_filter_layout->addWidget(transistorfilter);
         ui->page11->setLayout(transistor_filter_layout);
         displayTable(TransistorTable);
+    }
+    else if(ui->comboBox_component->currentText()=="Fuse")    // page 11, indice 10 05/09/20
+    {
+        ui->stackedWidget->setCurrentIndex(11);
+        fusefilter->set_fuse_filter();
+        fuse_filter_layout = new QVBoxLayout;
+        fuse_filter_layout->addWidget(fusefilter);
+        ui->page11->setLayout(fuse_filter_layout);
+        displayTable(FuseTable);
     }
 }
 

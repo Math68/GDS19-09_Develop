@@ -26,7 +26,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Gestion de Stock: GDS19_V4 - 26/12/2019</string>
+   <string>Gestion de Stock: GDS19_V4 - 03/09/2020</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -232,6 +232,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Fuse</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Inductor</string>
              </property>
             </item>
@@ -258,6 +263,16 @@
             <item>
              <property name="text">
               <string>Resistor</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Switch</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Transformator</string>
              </property>
             </item>
             <item>

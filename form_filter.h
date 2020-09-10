@@ -27,7 +27,7 @@ public:
     // ListFiltreCombobox contient les noms des différentes combobox selectionéés
     // ListFiltreData contient le contenu des différentes combobox qui ont ete selectionnéés
 
-    enum component {Choose=0, Capacitor, Connector, Diode, Inductor, Integrated_Circuit, Led, Quartz, Relais, Resistor, Transistor} componentToFilter;
+    enum component {Choose=0, Capacitor, Connector, Diode, Inductor, Integrated_Circuit, Led, Quartz, Relais, Resistor, Transistor, Fuse} componentToFilter;
 
     Ui::Form_filter *ui;
     QLabel *Label_filter_value = new QLabel("Value");
@@ -65,6 +65,7 @@ public:
     void set_relay_filter();
     void set_resistor_filter();
     void set_transistor_filter();
+    void set_fuse_filter();
     void clearlists();
 
     void FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox);
