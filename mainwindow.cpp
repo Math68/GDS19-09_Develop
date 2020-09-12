@@ -184,7 +184,7 @@ void MainWindow::on_pushButton_search_component_clicked()
         fusefilter->set_fuse_filter();
         fuse_filter_layout = new QVBoxLayout;
         fuse_filter_layout->addWidget(fusefilter);
-        ui->page11->setLayout(fuse_filter_layout);
+        ui->page12->setLayout(fuse_filter_layout);
         displayTable(FuseTable);
     }
 }

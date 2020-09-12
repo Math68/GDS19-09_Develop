@@ -70,6 +70,7 @@ public:
     QWidget *page9;
     QWidget *page10;
     QWidget *page11;
+    QWidget *page12;
     QGroupBox *groupBox;
     QHBoxLayout *horizontalLayout_3;
     QTableView *tableView;
@@ -329,6 +330,9 @@ public:
         sizePolicy7.setHeightForWidth(page11->sizePolicy().hasHeightForWidth());
         page11->setSizePolicy(sizePolicy7);
         stackedWidget->addWidget(page11);
+        page12 = new QWidget();
+        page12->setObjectName(QStringLiteral("page12"));
+        stackedWidget->addWidget(page12);
 
         horizontalLayout_6->addWidget(stackedWidget);
 
@@ -397,7 +401,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(10);
+        stackedWidget->setCurrentIndex(11);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

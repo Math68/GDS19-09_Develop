@@ -22,3 +22,4 @@ int main(int argc, char *argv[])
 // Update from
 // Update from 25/11/19: Added Picture at component connector
 // padate form 21/12/19: Search Item number combobox will refresched, and if no component is choosen, no message will be displayed
+// Update from 09/09/20: Fuse part added

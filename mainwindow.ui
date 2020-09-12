@@ -410,7 +410,7 @@
              </size>
             </property>
             <property name="currentIndex">
-             <number>10</number>
+             <number>11</number>
             </property>
             <widget class="QWidget" name="page1">
              <property name="enabled">
@@ -533,6 +533,7 @@
               </sizepolicy>
              </property>
             </widget>
+            <widget class="QWidget" name="page12"/>
            </widget>
           </item>
          </layout>

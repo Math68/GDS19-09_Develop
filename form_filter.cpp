@@ -112,6 +112,9 @@ void Form_filter::set_diode_filter(){
 void Form_filter::set_fuse_filter(){
     componentToFilter=Fuse;
 
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,2,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,2,1);
+
 }
 
 void Form_filter::set_inductor_filter(){

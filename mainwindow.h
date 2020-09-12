@@ -73,7 +73,7 @@ public:
     QString RelayTable ="SELECT Parts_id, Reference, Quantity, Mounting, Package, Voltage, Current, Configuration, Supplier, Item_number FROM Parts WHERE Component='Relay' AND Reference != '' ORDER BY Reference";
     QString ResistorTable = "SELECT Parts_id, Value, Quantity, Power, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE component='Resistor' AND Value != '' ORDER BY Value";
     QString TransistorTable = "SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Transistor' AND Reference != '' ORDER BY Reference";
-    QString FuseTable = "SELECT Parts_id, Reference, Quantity, Type, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND Reference != '' ORDER BY Reference";
+    QString FuseTable = "SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND Reference != '' ORDER BY Reference";
 
     QString SearchCapacitorbyPartId = "SELECT Parts_id, Component, Value, Quantity, Voltage, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Capacitor' AND Parts_id='%1'";
     QString SearchConnectorbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number FROM Parts WHERE Component='Connector' AND Parts_id='%1'";
