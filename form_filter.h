@@ -27,7 +27,7 @@ public:
     // ListFiltreCombobox contient les noms des différentes combobox selectionéés
     // ListFiltreData contient le contenu des différentes combobox qui ont ete selectionnéés
 
-    enum component {Choose=0, Capacitor, Connector, Diode, Inductor, Integrated_Circuit, Led, Quartz, Relais, Resistor, Transistor, Fuse} componentToFilter;
+    enum component {Choose=0, Capacitor, Connector, Diode, Inductor, Integrated_Circuit, Led, Quartz, Relay, Resistor, Transistor, Fuse, Switch, Transformator} componentToFilter;
 
     Ui::Form_filter *ui;
     QLabel *Label_filter_value = new QLabel("Value");
@@ -39,8 +39,8 @@ public:
     QLabel *Label_filter_type = new QLabel("Type");
     QLabel *Label_filter_contacts = new QLabel("Contacts");
     QLabel *Label_filter_spacing = new QLabel("Spacing");
-    QLabel *Label_filter_couleur = new QLabel("Couleur");
-    QLabel *Label_filter_diametre  = new QLabel("Diametre");
+    QLabel *Label_filter_color = new QLabel("Color");
+    QLabel *Label_filter_diameter  = new QLabel("Diameter");
     QLabel *Label_filter_configuration = new QLabel("Configuration");
 
     QComboBox *comboBox_filter_value = new QComboBox;
@@ -52,6 +52,9 @@ public:
     QComboBox *comboBox_filter_reference = new QComboBox;
     QComboBox *comboBox_filter_contacts = new QComboBox;
     QComboBox *comboBox_filter_spacing = new QComboBox;
+    QComboBox *comboBox_filter_color = new QComboBox;
+    QComboBox *comboBox_filter_diameter = new QComboBox;
+    QComboBox *comboBox_filter_configuration = new QComboBox;
 
     QString SelectData = "SELECT DISTINCT %1 FROM Parts WHERE Component='%2' ORDER BY %1";
 
@@ -66,6 +69,8 @@ public:
     void set_resistor_filter();
     void set_transistor_filter();
     void set_fuse_filter();
+    void set_switch_filter();
+    void set_transformator_filter();
     void clearlists();
 
     void FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox);

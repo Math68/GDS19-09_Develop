@@ -19,9 +19,9 @@ Form_filter::Form_filter(QWidget *parent) :
     Label_filter_type->setAlignment(Qt::AlignRight);
     Label_filter_spacing->setAlignment(Qt::AlignRight);
     Label_filter_power->setAlignment(Qt::AlignRight);
-    Label_filter_diametre->setAlignment(Qt::AlignRight);
+    Label_filter_diameter->setAlignment(Qt::AlignRight);
     Label_filter_current->setAlignment(Qt::AlignRight);
-    Label_filter_couleur->setAlignment(Qt::AlignRight);
+    Label_filter_color->setAlignment(Qt::AlignRight);
     Label_filter_configuration->setAlignment(Qt::AlignRight);
 
     //Label_filter_spacing->setFixedSize(65,20);
@@ -112,13 +112,23 @@ void Form_filter::set_diode_filter(){
 void Form_filter::set_fuse_filter(){
     componentToFilter=Fuse;
 
-    ui->gridLayout_filter->addWidget(Label_filter_voltage,2,0);
-    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,2,1);
-
+    ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
+    ui->gridLayout_filter->addWidget(Label_filter_type,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_type,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
+    ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
+    ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
 }
 
 void Form_filter::set_inductor_filter(){
+    componentToFilter=Inductor;
 
+    ui->gridLayout_filter->addWidget(Label_filter_value,1,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_value,1,1);
+    ui->gridLayout_filter->addWidget(Label_filter_current,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_current,1,3);
 }
 
 void Form_filter::set_integrated_circuit_filter(){
@@ -138,15 +148,34 @@ void Form_filter::set_integrated_circuit_filter(){
 }
 
 void Form_filter::set_led_filter(){
+    componentToFilter=Led;
 
+    ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
+    ui->gridLayout_filter->addWidget(Label_filter_color,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_color,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_diameter,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_diameter,1,5);
 }
 
 void Form_filter::set_quartz_filter(){
+    componentToFilter=Quartz;
 
+    ui->gridLayout_filter->addWidget(Label_filter_value,1,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_value,1,1);
 }
 
 void Form_filter::set_relay_filter(){
+    componentToFilter=Relay;
 
+    ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
+    ui->gridLayout_filter->addWidget(Label_filter_configuration,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_configuration,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
+    ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
+    ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
 }
 
 void Form_filter::set_resistor_filter(){
@@ -166,6 +195,35 @@ void Form_filter::set_resistor_filter(){
     connect( comboBox_filter_tolerance, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_tolerance_currentTextChanged(QString)));
 
     clearlists();
+}
+
+void Form_filter::set_switch_filter(){
+    componentToFilter=Switch;
+
+    ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
+    ui->gridLayout_filter->addWidget(Label_filter_configuration,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_configuration,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
+    ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
+    ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
+}
+
+void Form_filter::set_transformator_filter(){
+    componentToFilter=Transformator;
+
+    ui->label_filter_mounting->hide();
+    ui->comboBox_filter_mounting->hide();
+    ui->label_filter_package->hide();
+    ui->comboBox_filter_package->hide();
+
+    ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
+    ui->gridLayout_filter->addWidget(Label_filter_power,1,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_power,1,3);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,4);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
 }
 
 void Form_filter::set_transistor_filter(){
@@ -544,7 +602,7 @@ void Form_filter::on_pushButton_filter_reset_clicked(){
     case Quartz:
         break;
 
-    case Relais:
+    case Relay:
         break;
 
     case Resistor:
@@ -553,6 +611,12 @@ void Form_filter::on_pushButton_filter_reset_clicked(){
 
     case Transistor:
         set_transistor_combobox();
+        break;
+    case Fuse:
+        break;
+    case Switch:
+        break;
+    case Transformator:
         break;
     }
 }
@@ -954,7 +1018,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
     else if(componentToFilter==Quartz){
 
     }
-    else if(componentToFilter==Relais){
+    else if(componentToFilter==Relay){
 
     }
     else if(componentToFilter==Resistor){

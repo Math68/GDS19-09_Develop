@@ -23,7 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     relayfilter = new Form_filter;
     resistorfilter = new Form_filter;
     transistorfilter = new Form_filter;
-    fusefilter= new Form_filter;
+    fusefilter = new Form_filter;
+    switchfilter = new Form_filter;
+    transformatorfilter = new Form_filter;
 
     //connect(capacitorfilter, SIGNAL(notifyRefreshTable(QString)) , this, SLOT(onRefreshCapacitorTable(QString)));
     connect(capacitorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
@@ -93,7 +95,7 @@ void MainWindow::on_pushButton_search_component_clicked()
         capacitorfilter->set_capacitor_filter();
         capacitor_filter_layout = new QVBoxLayout;
         capacitor_filter_layout->addWidget(capacitorfilter);
-        ui->groupBox_filtre->setLayout(capacitor_filter_layout);
+        //ui->groupBox_filtre->setLayout(capacitor_filter_layout);
         ui->page2->setLayout(capacitor_filter_layout);
         displayTable(CapacitorTable);
     }
@@ -103,6 +105,7 @@ void MainWindow::on_pushButton_search_component_clicked()
         connectorfilter->set_connector_filter();
         connector_filter_layout = new QVBoxLayout;
         connector_filter_layout->addWidget(connectorfilter);
+        //ui->gr
         ui->page3->setLayout(connector_filter_layout);
         displayTable(ConnectorTable);
     }
@@ -178,7 +181,7 @@ void MainWindow::on_pushButton_search_component_clicked()
         ui->page11->setLayout(transistor_filter_layout);
         displayTable(TransistorTable);
     }
-    else if(ui->comboBox_component->currentText()=="Fuse")    // page 11, indice 10 05/09/20
+    else if(ui->comboBox_component->currentText()=="Fuse")    // page 12, indice 11 05/09/20
     {
         ui->stackedWidget->setCurrentIndex(11);
         fusefilter->set_fuse_filter();
@@ -186,6 +189,24 @@ void MainWindow::on_pushButton_search_component_clicked()
         fuse_filter_layout->addWidget(fusefilter);
         ui->page12->setLayout(fuse_filter_layout);
         displayTable(FuseTable);
+    }
+    else if(ui->comboBox_component->currentText()=="Switch")    // page 13, indice 12 05/09/20
+    {
+        ui->stackedWidget->setCurrentIndex(12);
+        switchfilter->set_switch_filter();
+        switch_filter_layout = new QVBoxLayout;
+        switch_filter_layout->addWidget(switchfilter);
+        ui->page13->setLayout(switch_filter_layout);
+        displayTable(SwitchTable);
+    }
+    else if(ui->comboBox_component->currentText()=="Transformator")    // page 14, indice 13 05/09/20
+    {
+        ui->stackedWidget->setCurrentIndex(13);
+        transformatorfilter->set_transformator_filter();
+        transformator_filter_layout = new QVBoxLayout;
+        transformator_filter_layout->addWidget(transformatorfilter);
+        ui->page14->setLayout(transformator_filter_layout);
+        displayTable(TransformatorTable);
     }
 }
 
