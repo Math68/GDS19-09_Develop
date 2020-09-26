@@ -128,6 +128,30 @@ void Dialog_store_windows::set_diode_store_window()
     FillComboBox(SelectData,"Power","Diode",Combobox_store_power);
 }
 
+void Dialog_store_windows::set_fuse_store_window(){
+
+    SelectedComponent=Fuse;
+
+    this->setWindowTitle("Store Fuse");
+
+    delete ui->label_store_value;
+    ui->gridLayout_store->addWidget(Label_store_reference,0,0);
+
+    ComboBox_store_type = new QComboBox;
+    ComboBox_store_type->setEditable(1);
+    Combobox_store_voltage = new QComboBox;
+    Combobox_store_voltage->setEditable(1);
+    Combobox_store_current = new QComboBox;
+    Combobox_store_current->setEditable(1);
+    ui->gridLayout_store->addWidget(Label_store_type,3,0);
+    ui->gridLayout_store->addWidget(ComboBox_store_type,3,1);
+    ui->gridLayout_store->addWidget(Label_store_voltage,4,0);
+    ui->gridLayout_store->addWidget(Combobox_store_voltage,4,1);
+    ui->gridLayout_store->addWidget(Label_store_current,4,3);
+    ui->gridLayout_store->addWidget(Combobox_store_current,4,4);
+}
+
+
 void Dialog_store_windows::set_inductor_store_window()
 {
     SelectedComponent=Inductor;

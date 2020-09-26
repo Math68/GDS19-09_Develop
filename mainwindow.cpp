@@ -285,6 +285,9 @@ void MainWindow::on_pushButton_store_component_clicked()
         else if(ui->comboBox_component->currentText()=="Diode")
             store_window.set_diode_store_window();
 
+        else if(ui->comboBox_component->currentText()=="Fuse")
+            store_window.set_fuse_store_window();
+
         else if(ui->comboBox_component->currentText()=="Inductor")
             store_window.set_inductor_store_window();
 
