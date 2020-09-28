@@ -6,7 +6,7 @@
 #include <QLabel>
 #include <QComboBox>
 
-enum Components{Capacitor=0, Connector, Diode, Inductor, IntegratedCircuit, Led, Quartz, Relay, Resistor, Transistor, Fuse};
+enum Components{Capacitor=0, Connector, Diode, Inductor, IntegratedCircuit, Led, Quartz, Relay, Resistor, Transistor, Fuse, Switch};
 
 static Components SelectedComponent;
 
@@ -40,6 +40,7 @@ public:
     void save_capacitor();
     void save_connector();
     void save_diode();
+    void save_fuse();
     void save_inductor();
     void save_integrated_circuit();
     void save_led();

@@ -149,6 +149,10 @@ void Dialog_store_windows::set_fuse_store_window(){
     ui->gridLayout_store->addWidget(Combobox_store_voltage,4,1);
     ui->gridLayout_store->addWidget(Label_store_current,4,3);
     ui->gridLayout_store->addWidget(Combobox_store_current,4,4);
+
+    FillComboBox(SelectData,"Voltage","Fuse",Combobox_store_voltage);
+    FillComboBox(SelectData,"Current","Fuse",Combobox_store_current);
+    FillComboBox(SelectData,"Type","Fuse",ComboBox_store_type);
 }
 
 
@@ -322,6 +326,9 @@ void Dialog_store_windows::on_pushButton_store_save_clicked()
     else if(SelectedComponent==Diode)
          save_diode();
 
+    else if(SelectedComponent==Fuse)
+        save_fuse();
+
     else if(SelectedComponent==Inductor)
         save_inductor();
 
@@ -338,6 +345,9 @@ void Dialog_store_windows::on_pushButton_store_save_clicked()
         save_relay();
 
     else if(SelectedComponent==Resistor)
+        save_resistor();
+
+    else if(SelectedComponent==Switch)
         save_resistor();
 
     else if(SelectedComponent==Transistor)
@@ -384,6 +394,22 @@ void Dialog_store_windows::save_diode()
     QSqlQuery query;
     query.exec("insert into Parts (Component, Reference, Quantity, Mounting, Package, Type, Voltage, Current, Supplier, Item_number)"
                " values('Diode',"
+               "'"+ui->lineEdit_store_value->text()+"',"
+               "'"+ui->lineEdit_store_quantity->text()+"',"
+               "'"+ui->comboBox_store_mounting->currentText()+"',"
+               "'"+ui->comboBox_store_package->currentText()+"',"
+               "'"+ComboBox_store_type->currentText()+"',"
+               "'"+Combobox_store_voltage->currentText()+"',"
+               "'"+Combobox_store_current->currentText()+"',"
+               "'"+ui->comboBox_store_supplier->currentText()+"',"
+               "'"+ui->lineEdit_store_item_number->text()+"')");
+}
+
+void Dialog_store_windows::save_fuse()
+{
+    QSqlQuery query;
+    query.exec("insert into Parts (Component, Reference, Quantity, Mounting, Package, Type, Voltage, Current, Supplier, Item_number)"
+               " values('Fuse',"
                "'"+ui->lineEdit_store_value->text()+"',"
                "'"+ui->lineEdit_store_quantity->text()+"',"
                "'"+ui->comboBox_store_mounting->currentText()+"',"

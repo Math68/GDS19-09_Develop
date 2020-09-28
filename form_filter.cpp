@@ -120,6 +120,8 @@ void Form_filter::set_fuse_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
     ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
     ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
+
+    //    connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
 }
 
 void Form_filter::set_inductor_filter(){
