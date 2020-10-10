@@ -6,7 +6,7 @@
 #include <QLabel>
 #include <QComboBox>
 
-enum Components{Capacitor=0, Connector, Diode, Inductor, IntegratedCircuit, Led, Quartz, Relay, Resistor, Transistor, Fuse, Switch};
+enum Components{Capacitor=0, Connector, Diode, Inductor, IntegratedCircuit, Led, Quartz, Relay, Resistor, Transistor, Fuse, Switch, Transformator};
 
 static Components SelectedComponent;
 
@@ -26,15 +26,15 @@ public:
     void set_capacitor_store_window();
     void set_connector_store_window();
     void set_diode_store_window();
-
     void set_fuse_store_window();
-
     void set_inductor_store_window();
     void set_integrated_circuit_store_window();
     void set_led_store_window();
     void set_quartz_store_window();
     void set_relay_store_window();
     void set_resistor_store_window();
+    void set_switch_store_window();
+    void set_transformator_store_window();
     void set_transistor_store_window();
 
     void save_capacitor();
@@ -47,6 +47,8 @@ public:
     void save_quartz();
     void save_relay();
     void save_resistor();
+    void save_switch();
+    void save_transformator();
     void save_transistor();
 
     void FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox);

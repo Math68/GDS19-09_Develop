@@ -80,12 +80,19 @@ public:
     void FillFilteredComboBox_ThreeItem(QString _String, QString _Item, QString _Component, QComboBox *Combobox);
     void FillFilteredComboBox_FourItem(QString _String, QString _Item, QString _Component, QComboBox *Combobox);
 
-    void set_capacitor_combobox();
-    void set_connector_combobox();
-    void set_diode_combobox();
-    void set_integrated_circuit_combobox();
-    void set_resistor_combobox();
-    void set_transistor_combobox();
+    void fill_capacitor_combobox();
+    void fill_connector_combobox();
+    void fill_diode_combobox();
+    void fill_fuse_combobox();
+    void fill_inductor_combobox();
+    void fill_integrated_circuit_combobox();
+    void fill_led_combobox();
+    void fill_quartz_combobox();
+    void fill_relay_combobox();
+    void fill_resistor_combobox();
+    void fill_switch_combobox();
+    void fill_transformator_combobox();
+    void fill_transistor_combobox();
 
 private slots:
 

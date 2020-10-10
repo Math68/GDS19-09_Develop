@@ -143,6 +143,7 @@ void Dialog_store_windows::set_fuse_store_window(){
     Combobox_store_voltage->setEditable(1);
     Combobox_store_current = new QComboBox;
     Combobox_store_current->setEditable(1);
+
     ui->gridLayout_store->addWidget(Label_store_type,3,0);
     ui->gridLayout_store->addWidget(ComboBox_store_type,3,1);
     ui->gridLayout_store->addWidget(Label_store_voltage,4,0);
@@ -154,7 +155,6 @@ void Dialog_store_windows::set_fuse_store_window(){
     FillComboBox(SelectData,"Current","Fuse",Combobox_store_current);
     FillComboBox(SelectData,"Type","Fuse",ComboBox_store_type);
 }
-
 
 void Dialog_store_windows::set_inductor_store_window()
 {
@@ -281,6 +281,61 @@ void Dialog_store_windows::set_resistor_store_window()
     FillComboBox(SelectData,"Tolerance","Resistor",Combobox_store_tolerance);
 }
 
+void Dialog_store_windows::set_switch_store_window()
+{
+    SelectedComponent=Switch;
+
+    this->setWindowTitle("Store Switch");
+
+    delete ui->label_store_value;
+
+    Combobox_store_voltage = new QComboBox;
+    Combobox_store_voltage->setEditable(1);
+    Combobox_store_current = new QComboBox;
+    Combobox_store_current->setEditable(1);
+    Combobox_store_configuration = new QComboBox;
+    Combobox_store_configuration->setEditable(1);
+
+    ui->gridLayout_store->addWidget(Label_store_reference,0,0);
+    ui->gridLayout_store->addWidget(Label_store_voltage,2,0);
+    ui->gridLayout_store->addWidget(Combobox_store_voltage,2,1);
+    ui->gridLayout_store->addWidget(Label_store_current,2,3);
+    ui->gridLayout_store->addWidget(Combobox_store_current,2,4);
+    ui->gridLayout_store->addWidget(Label_store_configuration,3,0);
+    ui->gridLayout_store->addWidget(Combobox_store_configuration,3,1);
+
+    FillComboBox(SelectData,"Package","Relay",ui->comboBox_store_package);
+    FillComboBox(SelectData,"Voltage","Relay",Combobox_store_voltage);
+    FillComboBox(SelectData,"Current","Relay",Combobox_store_current);
+    FillComboBox(SelectData,"Configuration","Relay",Combobox_store_configuration);
+}
+
+void Dialog_store_windows::set_transformator_store_window()
+{
+    SelectedComponent=Transformator;
+
+    this->setWindowTitle("Store Transformator");
+
+    delete ui->label_store_value;
+    delete ui->label_store_mounting;
+    delete ui->label_store_package;
+    delete ui->comboBox_store_package;
+    delete ui->comboBox_store_mounting;
+
+    Combobox_store_voltage = new QComboBox;
+    Combobox_store_voltage->setEditable(1);
+    Combobox_store_power = new QComboBox;
+    Combobox_store_power->setEditable(1);
+
+    ui->gridLayout_store->addWidget(Label_store_reference,0,0);
+    ui->gridLayout_store->addWidget(Label_store_voltage,1,0);
+    ui->gridLayout_store->addWidget(Combobox_store_voltage,1,1);
+    ui->gridLayout_store->addWidget(Label_store_power,1,3);
+    ui->gridLayout_store->addWidget(Combobox_store_power,1,4);
+
+
+}
+
 void Dialog_store_windows::set_transistor_store_window()
 {
     SelectedComponent=Transistor;
@@ -314,7 +369,7 @@ void Dialog_store_windows::on_pushButton_store_save_clicked()
     QString NewItemNumber;
 
     NewItemNumber=ui->lineEdit_store_item_number->text();
-    qDebug() << NewItemNumber;
+//    qDebug() << NewItemNumber;
     // Check Item Number
 
     if(SelectedComponent==Capacitor)
@@ -348,7 +403,10 @@ void Dialog_store_windows::on_pushButton_store_save_clicked()
         save_resistor();
 
     else if(SelectedComponent==Switch)
-        save_resistor();
+        save_switch();
+
+    else if(SelectedComponent==Transformator)
+        save_transformator();
 
     else if(SelectedComponent==Transistor)
         save_transistor();
@@ -508,6 +566,35 @@ void Dialog_store_windows::save_resistor()
                "'"+Combobox_store_tolerance->currentText()+"',"
                "'"+ui->comboBox_store_supplier->currentText()+"',"
                "'"+ui->lineEdit_store_item_number->text()+"')");
+}
+
+void Dialog_store_windows::save_switch()
+{
+    QSqlQuery query;
+    query.exec("insert into Parts (Component, Reference, Quantity, Mounting, Package, Voltage, Current, Configuration, Supplier, Item_number)"
+               " values('Switch',"
+               "'"+ui->lineEdit_store_value->text()+"',"
+               "'"+ui->lineEdit_store_quantity->text()+"',"
+               "'"+ui->comboBox_store_mounting->currentText()+"',"
+               "'"+ui->comboBox_store_package->currentText()+"',"
+               "'"+Combobox_store_voltage->currentText()+"',"
+               "'"+Combobox_store_current->currentText()+"',"
+               "'"+Combobox_store_configuration->currentText()+"',"
+               "'"+ui->comboBox_store_supplier->currentText()+"',"
+               "'"+ui->lineEdit_store_item_number->text()+"')");
+}
+
+void Dialog_store_windows::save_transformator()
+{
+    QSqlQuery query;
+    query.exec("insert into Parts (Component, Reference, Quantity, Supplier, Item_number, Voltage, Power)"
+               " values('Transformator',"
+               "'"+ui->lineEdit_store_value->text()+"',"
+               "'"+ui->lineEdit_store_quantity->text()+"',"
+               "'"+ui->comboBox_store_supplier->currentText()+"',"
+               "'"+ui->lineEdit_store_item_number->text()+"',"
+               "'"+Combobox_store_voltage->currentText()+"',"
+               "'"+Combobox_store_power->currentText()+"')");
 }
 
 void Dialog_store_windows::save_transistor()

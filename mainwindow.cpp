@@ -1,4 +1,4 @@
-// 25/12/2019
+// 29/09/2020
 #include <QMessageBox>
 #include <QDialog>
 #include <QSqlDatabase>
@@ -31,12 +31,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(capacitorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(connectorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(diodefilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
+    connect(fusefilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(inductorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(integratedcircuitfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(ledfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(quartzfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(relayfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(resistorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
+    connect(switchfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
+    connect(transformatorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
     connect(transistorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
 
     Window_parts_id_update = new Dialog_parts_id_update;
@@ -46,6 +49,10 @@ MainWindow::MainWindow(QWidget *parent) :
     Window_parts_id_delete = new Dialog_parts_id_delete;
     connect(this, &MainWindow::notify_parts_id_to_delete, Window_parts_id_delete, &Dialog_parts_id_delete::display_parts_id_to_deleted);
     connect(Window_parts_id_delete, &Dialog_parts_id_delete::notify_DatabaseRowToDelete, this, &MainWindow::DataBaseDeleteRow);
+
+    // change on 04/10/20
+    //Dialog_store_windows store_window;
+    //connect(store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::UpdateTableRow);
 
     //Database connection
     if(!GDS19_DataBase.OpenConnection())
@@ -105,7 +112,6 @@ void MainWindow::on_pushButton_search_component_clicked()
         connectorfilter->set_connector_filter();
         connector_filter_layout = new QVBoxLayout;
         connector_filter_layout->addWidget(connectorfilter);
-        //ui->gr
         ui->page3->setLayout(connector_filter_layout);
         displayTable(ConnectorTable);
     }
@@ -236,11 +242,11 @@ void MainWindow::displayTable(QString data)
 
     qDebug() << RowTotalWidth;
 
-    if(RowTotalWidth>=700)
+    if(RowTotalWidth>=600)
         this->setFixedWidth(RowTotalWidth+66);
     else{
         ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-        this->setFixedWidth(680);
+        this->setFixedWidth(690); //680
     }
 }
 
@@ -273,43 +279,53 @@ void MainWindow::on_pushButton_store_component_clicked()
         QMessageBox::warning(this,tr(" "),tr("Select a component !!!"));
     }
     else{
-        Dialog_store_windows store_window;
-        connect(&store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::UpdateTableRow);
+        //Dialog_store_windows store_window;
+        //connect(&store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::UpdateTableRow);
+
+        // 04/10/20
+        store_window = new Dialog_store_windows();
+        connect(store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::UpdateTableRow);
 
         if(ui->comboBox_component->currentText()=="Capacitor")
-            store_window.set_capacitor_store_window();
+            store_window->set_capacitor_store_window();
 
         else if(ui->comboBox_component->currentText()=="Connector")
-            store_window.set_connector_store_window();
+            store_window->set_connector_store_window();
 
         else if(ui->comboBox_component->currentText()=="Diode")
-            store_window.set_diode_store_window();
+            store_window->set_diode_store_window();
 
         else if(ui->comboBox_component->currentText()=="Fuse")
-            store_window.set_fuse_store_window();
+            store_window->set_fuse_store_window();
 
         else if(ui->comboBox_component->currentText()=="Inductor")
-            store_window.set_inductor_store_window();
+            store_window->set_inductor_store_window();
 
         else if(ui->comboBox_component->currentText()=="Integrated Circuit")
-            store_window.set_integrated_circuit_store_window();
+            store_window->set_integrated_circuit_store_window();
 
         else if(ui->comboBox_component->currentText()=="Led")
-            store_window.set_led_store_window();
+            store_window->set_led_store_window();
 
         else if(ui->comboBox_component->currentText()=="Quartz")
-            store_window.set_quartz_store_window();
+            store_window->set_quartz_store_window();
 
         else if(ui->comboBox_component->currentText()=="Relay")
-            store_window.set_relay_store_window();
+            store_window->set_relay_store_window();
 
         else if(ui->comboBox_component->currentText()=="Resistor")
-            store_window.set_resistor_store_window();
+            store_window->set_resistor_store_window();
+
+        else if(ui->comboBox_component->currentText()=="Switch")
+            store_window->set_switch_store_window();
+
+        else if(ui->comboBox_component->currentText()=="Transformator")
+            store_window->set_transformator_store_window();
 
         else if(ui->comboBox_component->currentText()=="Transistor")
-            store_window.set_transistor_store_window();
+            store_window->set_transistor_store_window();
 
-        store_window.exec();
+        store_window->exec();
     }
 }
 
@@ -429,6 +445,9 @@ void MainWindow::DisplayRow(QString Component, QString PartId)
     else if(Component=="Diode"){
         LookingforPartId=SearchDiodebyPartId.arg(PartId);
     }
+    else if(Component=="Fuse"){
+        LookingforPartId=SearchFusebyPartId.arg(PartId);
+    }
     else if(Component=="Inductor"){
         LookingforPartId=SearchInductorbyPartId.arg(PartId);
     }
@@ -447,8 +466,14 @@ void MainWindow::DisplayRow(QString Component, QString PartId)
     else if(Component=="Resistor"){
         LookingforPartId=SearchResistorbyPartId.arg(PartId);
     }
+    else if(Component=="Switch"){
+        LookingforPartId=SearchSwitchbyPartId.arg(PartId);
+    }
     else if(Component=="Transistor"){
         LookingforPartId=SearchTransistorbyPartId.arg(PartId);
+    }
+    else if(Component=="Transformator"){
+        LookingforPartId=SearchTransformatorbyPartId.arg(PartId);
     }
     displayTable(LookingforPartId);
     SelectItemNumbers();

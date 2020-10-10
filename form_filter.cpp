@@ -47,7 +47,7 @@ void Form_filter::set_capacitor_filter(){
     ui->gridLayout_filter->addWidget(Label_filter_tolerance,1,4);
     ui->gridLayout_filter->addWidget(comboBox_filter_tolerance,1,5);
 
-    set_capacitor_combobox();
+    fill_capacitor_combobox();
 
     connect(comboBox_filter_value, SIGNAL (currentTextChanged(QString)), this,  SLOT(on_comboBox_filter_value_currentTextChanged(QString)));
     connect(comboBox_filter_voltage, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_voltage_currentTextChanged(QString)));
@@ -75,7 +75,7 @@ void Form_filter::set_connector_filter(){
     ui->gridLayout_filter->setColumnMinimumWidth(4,65);
     ui->gridLayout_filter->setColumnMinimumWidth(5,65);
 
-    set_connector_combobox();
+    fill_connector_combobox();
 
     connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
     connect(comboBox_filter_contacts, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_contacts_currentTextChanged(QString)));
@@ -98,7 +98,7 @@ void Form_filter::set_diode_filter(){
     ui->gridLayout_filter->addWidget(Label_filter_current,2,4);
     ui->gridLayout_filter->addWidget(comboBox_filter_current,2,5);
 
-    set_diode_combobox();
+    fill_diode_combobox();
 
     connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
     connect(comboBox_filter_type, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_type_currentTextChanged(QString)));
@@ -121,7 +121,14 @@ void Form_filter::set_fuse_filter(){
     ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
     ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
 
-    //    connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    fill_fuse_combobox();
+
+    connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    connect(comboBox_filter_type, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_type_currentTextChanged(QString)));
+    connect(comboBox_filter_voltage, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_voltage_currentTextChanged(QString)));
+    connect(comboBox_filter_current, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_current_currentTextChanged(QString)));
+
+    clearlists();
 }
 
 void Form_filter::set_inductor_filter(){
@@ -131,6 +138,12 @@ void Form_filter::set_inductor_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_value,1,1);
     ui->gridLayout_filter->addWidget(Label_filter_current,1,2);
     ui->gridLayout_filter->addWidget(comboBox_filter_current,1,3);
+
+    fill_inductor_combobox();
+
+    connect(comboBox_filter_current, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_current_currentTextChanged(QString)));
+
+    clearlists();
 }
 
 void Form_filter::set_integrated_circuit_filter(){
@@ -141,7 +154,7 @@ void Form_filter::set_integrated_circuit_filter(){
     ui->gridLayout_filter->addWidget(Label_filter_type,1,2);
     ui->gridLayout_filter->addWidget(comboBox_filter_type,1,3);
 
-    set_integrated_circuit_combobox();
+    fill_integrated_circuit_combobox();
 
     connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
     connect(comboBox_filter_type, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_type_currentTextChanged(QString)));
@@ -158,6 +171,14 @@ void Form_filter::set_led_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_color,1,3);
     ui->gridLayout_filter->addWidget(Label_filter_diameter,1,4);
     ui->gridLayout_filter->addWidget(comboBox_filter_diameter,1,5);
+
+    fill_led_combobox();
+
+    connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    connect(comboBox_filter_color, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    connect(comboBox_filter_diameter, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+
+    clearlists();
 }
 
 void Form_filter::set_quartz_filter(){
@@ -165,6 +186,10 @@ void Form_filter::set_quartz_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_value,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_value,1,1);
+
+    fill_quartz_combobox();
+
+    clearlists();
 }
 
 void Form_filter::set_relay_filter(){
@@ -178,6 +203,10 @@ void Form_filter::set_relay_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
     ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
     ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
+
+    fill_relay_combobox();
+
+    clearlists();
 }
 
 void Form_filter::set_resistor_filter(){
@@ -191,7 +220,8 @@ void Form_filter::set_resistor_filter(){
     ui->gridLayout_filter->addWidget(Label_filter_tolerance,1,4);
     ui->gridLayout_filter->addWidget(comboBox_filter_tolerance,1,5);
 
-    set_resistor_combobox();
+    fill_resistor_combobox();
+
     connect ( comboBox_filter_value, SIGNAL (currentTextChanged(QString)), this,  SLOT(on_comboBox_filter_value_currentTextChanged(QString)));
     connect( comboBox_filter_power, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_power_currentTextChanged(QString)));
     connect( comboBox_filter_tolerance, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_tolerance_currentTextChanged(QString)));
@@ -210,6 +240,10 @@ void Form_filter::set_switch_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
     ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
     ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
+
+    fill_switch_combobox();
+
+    clearlists();
 }
 
 void Form_filter::set_transformator_filter(){
@@ -222,10 +256,14 @@ void Form_filter::set_transformator_filter(){
 
     ui->gridLayout_filter->addWidget(Label_filter_reference,1,0);
     ui->gridLayout_filter->addWidget(comboBox_filter_reference,1,1);
-    ui->gridLayout_filter->addWidget(Label_filter_power,1,2);
-    ui->gridLayout_filter->addWidget(comboBox_filter_power,1,3);
-    ui->gridLayout_filter->addWidget(Label_filter_voltage,1,4);
-    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,1,5);
+    ui->gridLayout_filter->addWidget(Label_filter_voltage,2,0);
+    ui->gridLayout_filter->addWidget(comboBox_filter_voltage,2,1);
+    ui->gridLayout_filter->addWidget(Label_filter_power,2,2);
+    ui->gridLayout_filter->addWidget(comboBox_filter_power,2,3);
+
+    fill_transformator_combobox();
+
+    clearlists();
 }
 
 void Form_filter::set_transistor_filter(){
@@ -241,7 +279,7 @@ void Form_filter::set_transistor_filter(){
     ui->gridLayout_filter->addWidget(Label_filter_current,1,6);
     ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
 
-    set_transistor_combobox();
+    fill_transistor_combobox();
 
     connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
     connect(comboBox_filter_type, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_type_currentTextChanged(QString)));
@@ -262,7 +300,7 @@ void Form_filter::FillComboBox(QString _String, QString _Item, QString _Componen
     Combobox->setModel(Model);
 }
 
-void Form_filter::set_capacitor_combobox(){
+void Form_filter::fill_capacitor_combobox(){
 
     FillComboBox(SelectData, "Item_number", "Capacitor", ui->comboBox_filter_item_number);
     FillComboBox(SelectData, "Supplier", "Capacitor", ui->comboBox_filter_supplier);
@@ -273,7 +311,7 @@ void Form_filter::set_capacitor_combobox(){
     FillComboBox(SelectData, "Tolerance", "Capacitor", comboBox_filter_tolerance);
 }
 
-void Form_filter::set_connector_combobox(){
+void Form_filter::fill_connector_combobox(){
 
     FillComboBox(SelectData, "Item_number", "Connector", ui->comboBox_filter_item_number);
     FillComboBox(SelectData, "Supplier", "Connector", ui->comboBox_filter_supplier);
@@ -282,7 +320,7 @@ void Form_filter::set_connector_combobox(){
     FillComboBox(SelectData, "Spacing", "Connector", comboBox_filter_spacing);
 }
 
-void Form_filter::set_diode_combobox(){
+void Form_filter::fill_diode_combobox(){
 
     FillComboBox(SelectData, "Item_number", "Diode", ui->comboBox_filter_item_number);
     FillComboBox(SelectData, "Supplier", "Diode", ui->comboBox_filter_supplier);
@@ -295,7 +333,30 @@ void Form_filter::set_diode_combobox(){
     FillComboBox(SelectData, "Current", "Diode", comboBox_filter_current);
 }
 
-void Form_filter::set_integrated_circuit_combobox(){
+void Form_filter::fill_fuse_combobox(){
+
+    FillComboBox(SelectData, "Item_number", "Fuse", ui->comboBox_filter_item_number);
+    FillComboBox(SelectData, "Supplier", "Fuse", ui->comboBox_filter_supplier);
+    FillComboBox(SelectData, "Mounting", "Fuse", ui->comboBox_filter_mounting);
+    FillComboBox(SelectData, "Package", "Fuse", ui->comboBox_filter_package);
+    FillComboBox(SelectData, "Reference", "Fuse", comboBox_filter_reference);
+    FillComboBox(SelectData, "Type", "Fuse", comboBox_filter_type);
+    FillComboBox(SelectData, "Power", "Fuse", comboBox_filter_power);
+    FillComboBox(SelectData, "Voltage", "Fuse", comboBox_filter_voltage);
+    FillComboBox(SelectData, "Current", "Fuse", comboBox_filter_current);
+}
+
+void Form_filter::fill_inductor_combobox(){
+
+    FillComboBox(SelectData, "Item_number", "Inductor", ui->comboBox_filter_item_number);
+    FillComboBox(SelectData, "Supplier", "Inductor", ui->comboBox_filter_supplier);
+    FillComboBox(SelectData, "Mounting", "Inductor", ui->comboBox_filter_mounting);
+    FillComboBox(SelectData, "Package", "Inductor", ui->comboBox_filter_package);
+    FillComboBox(SelectData, "Value", "Inductor", comboBox_filter_value);
+    FillComboBox(SelectData, "Current", "Inductor", comboBox_filter_current);
+}
+
+void Form_filter::fill_integrated_circuit_combobox(){
 
     FillComboBox(SelectData, "Item_number", "Integrated Circuit", ui->comboBox_filter_item_number);
     FillComboBox(SelectData, "Supplier", "Integrated Circuit", ui->comboBox_filter_supplier);
@@ -305,7 +366,39 @@ void Form_filter::set_integrated_circuit_combobox(){
     FillComboBox(SelectData, "Type", "Integrated Circuit", comboBox_filter_type);
 }
 
-void Form_filter::set_resistor_combobox(){
+void Form_filter::fill_led_combobox(){
+
+    FillComboBox(SelectData, "Item_number", "Led", ui->comboBox_filter_item_number);
+    FillComboBox(SelectData, "Supplier", "Led", ui->comboBox_filter_supplier);
+    FillComboBox(SelectData, "Mounting", "Led", ui->comboBox_filter_mounting);
+    FillComboBox(SelectData, "Package", "Led", ui->comboBox_filter_package);
+    FillComboBox(SelectData, "Reference", "Led", comboBox_filter_reference);
+    FillComboBox(SelectData, "Color", "Led", comboBox_filter_color);
+    FillComboBox(SelectData, "Diameter", "Led", comboBox_filter_diameter);
+}
+
+void Form_filter::fill_quartz_combobox(){
+
+    FillComboBox(SelectData, "Item_number", "Quartz", ui->comboBox_filter_item_number);
+    FillComboBox(SelectData, "Supplier", "Quartz", ui->comboBox_filter_supplier);
+    FillComboBox(SelectData, "Mounting", "Quartz", ui->comboBox_filter_mounting);
+    FillComboBox(SelectData, "Package", "Quartz", ui->comboBox_filter_package);
+    FillComboBox(SelectData, "Value", "Quartz", comboBox_filter_value);
+}
+
+void Form_filter::fill_relay_combobox(){
+
+    FillComboBox(SelectData, "Item_number", "Relay", ui->comboBox_filter_item_number);
+    FillComboBox(SelectData, "Supplier", "Relay", ui->comboBox_filter_supplier);
+    FillComboBox(SelectData, "Mounting", "Relay", ui->comboBox_filter_mounting);
+    FillComboBox(SelectData, "Package", "Relay", ui->comboBox_filter_package);
+    FillComboBox(SelectData, "Reference", "Relay", comboBox_filter_reference);
+    FillComboBox(SelectData, "Configuration", "Relay", comboBox_filter_configuration);
+    FillComboBox(SelectData, "Voltage", "Relay", comboBox_filter_voltage);
+    FillComboBox(SelectData, "Current", "Relay", comboBox_filter_current);
+}
+
+void Form_filter::fill_resistor_combobox(){
 
     FillComboBox(SelectData, "Item_number", "Resistor", ui->comboBox_filter_item_number);
     FillComboBox(SelectData, "Supplier", "Resistor", ui->comboBox_filter_supplier);
@@ -316,7 +409,30 @@ void Form_filter::set_resistor_combobox(){
     FillComboBox(SelectData, "Tolerance", "Resistor", comboBox_filter_tolerance);
 }
 
-void Form_filter::set_transistor_combobox(){
+void Form_filter::fill_switch_combobox(){
+
+    FillComboBox(SelectData, "Item_number", "Switch", ui->comboBox_filter_item_number);
+    FillComboBox(SelectData, "Supplier", "Switch", ui->comboBox_filter_supplier);
+    FillComboBox(SelectData, "Mounting", "Switch", ui->comboBox_filter_mounting);
+    FillComboBox(SelectData, "Package", "Switch", ui->comboBox_filter_package);
+    FillComboBox(SelectData, "Reference", "Switch", comboBox_filter_reference);
+    FillComboBox(SelectData, "Configuration", "Switch", comboBox_filter_configuration);
+    FillComboBox(SelectData, "Voltage", "Switch", comboBox_filter_voltage);
+    FillComboBox(SelectData, "Current", "Switch", comboBox_filter_current);
+}
+
+void Form_filter::fill_transformator_combobox(){
+
+    FillComboBox(SelectData, "Item_number", "Transformator", ui->comboBox_filter_item_number);
+    FillComboBox(SelectData, "Supplier", "Transformator", ui->comboBox_filter_supplier);
+    //FillComboBox(SelectData, "Mounting", "Transformator", ui->comboBox_filter_mounting);
+    //FillComboBox(SelectData, "Package", "Transformator", ui->comboBox_filter_package);
+    FillComboBox(SelectData, "Reference", "Transformator", comboBox_filter_reference);
+    FillComboBox(SelectData, "Power", "Transformator", comboBox_filter_power);
+    FillComboBox(SelectData, "Voltage", "Transformator", comboBox_filter_voltage);
+}
+
+void Form_filter::fill_transistor_combobox(){
 
     FillComboBox(SelectData, "Item_number", "Transistor", ui->comboBox_filter_item_number);
     FillComboBox(SelectData, "Supplier", "Transistor", ui->comboBox_filter_supplier);
@@ -580,22 +696,22 @@ void Form_filter::on_pushButton_filter_reset_clicked(){
         break;
 
     case Capacitor:
-        set_capacitor_combobox();
+        fill_capacitor_combobox();
         break;
 
     case Connector:
-        set_connector_combobox();
+        fill_connector_combobox();
         break;
 
     case Diode:
-        set_diode_combobox();
+        fill_diode_combobox();
         break;
 
     case Inductor:
         break;
 
     case Integrated_Circuit:
-        set_integrated_circuit_combobox();
+        fill_integrated_circuit_combobox();
         break;
 
     case Led:
@@ -608,11 +724,11 @@ void Form_filter::on_pushButton_filter_reset_clicked(){
         break;
 
     case Resistor:
-        set_resistor_combobox();
+        fill_resistor_combobox();
         break;
 
     case Transistor:
-        set_transistor_combobox();
+        fill_transistor_combobox();
         break;
     case Fuse:
         break;
