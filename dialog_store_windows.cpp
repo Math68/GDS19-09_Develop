@@ -332,8 +332,6 @@ void Dialog_store_windows::set_transformator_store_window()
     ui->gridLayout_store->addWidget(Combobox_store_voltage,1,1);
     ui->gridLayout_store->addWidget(Label_store_power,1,3);
     ui->gridLayout_store->addWidget(Combobox_store_power,1,4);
-
-
 }
 
 void Dialog_store_windows::set_transistor_store_window()

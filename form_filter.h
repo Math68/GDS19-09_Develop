@@ -61,16 +61,16 @@ public:
     void set_capacitor_filter();
     void set_connector_filter();
     void set_diode_filter();
+    void set_fuse_filter();
     void set_inductor_filter();
     void set_integrated_circuit_filter();
     void set_led_filter();
     void set_quartz_filter();
     void set_relay_filter();
     void set_resistor_filter();
-    void set_transistor_filter();
-    void set_fuse_filter();
     void set_switch_filter();
     void set_transformator_filter();
+    void set_transistor_filter();
     void clearlists();
 
     void FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox);
@@ -104,13 +104,13 @@ private slots:
     void on_comboBox_filter_type_currentTextChanged(const QString &arg1);
     void on_comboBox_filter_power_currentTextChanged(const  QString &arg1);
     void on_comboBox_filter_voltage_currentTextChanged(const  QString &arg1);
-
     void on_comboBox_filter_current_currentTextChanged(const QString &arg1);
     void on_comboBox_filter_tolerance_currentTextChanged(const QString &arg1);
-
     void on_comboBox_filter_contacts_currentTextChanged(const QString &arg1);
     void on_comboBox_filter_spacing_currentTextChanged(const QString &arg1);
-
+    void on_comboBox_filter_color_currentTextChanged(const QString &arg1);
+    void on_comboBox_filter_diameter_currentTextChanged(const QString &arg1);
+    void on_comboBox_filter_configuration_currentTextChanged(const QString &arg1);
     void on_comboBox_filter_package_currentTextChanged(const QString &arg1);
     void on_comboBox_filter_mounting_currentTextChanged(const QString &arg1);
     void on_comboBox_filter_supplier_currentTextChanged(const QString &arg1);

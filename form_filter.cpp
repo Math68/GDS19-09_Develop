@@ -26,6 +26,8 @@ Form_filter::Form_filter(QWidget *parent) :
 
     //Label_filter_spacing->setFixedSize(65,20);
     //comboBox_filter_spacing->minimumSizeHint(); //setFixedSize(70,20);
+
+    //connect(comboBox_filter_value, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_value_currentTextChanged(QString)));
 }
 
 Form_filter::~Form_filter(){
@@ -36,6 +38,10 @@ void Form_filter::clearlists(){
     ListFilterCombobox.clear();
     ListFilterData.clear();
 }
+
+// ***********************************************************
+// ***** SET FILTER
+// ***********************************************************
 
 void Form_filter::set_capacitor_filter(){
     componentToFilter=Capacitor;
@@ -141,6 +147,7 @@ void Form_filter::set_inductor_filter(){
 
     fill_inductor_combobox();
 
+    connect(comboBox_filter_value, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_value_currentTextChanged(QString)));
     connect(comboBox_filter_current, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_current_currentTextChanged(QString)));
 
     clearlists();
@@ -175,8 +182,8 @@ void Form_filter::set_led_filter(){
     fill_led_combobox();
 
     connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
-    connect(comboBox_filter_color, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
-    connect(comboBox_filter_diameter, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    connect(comboBox_filter_color, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_color_currentTextChanged(QString)));
+    connect(comboBox_filter_diameter, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_diameter_currentTextChanged(QString)));
 
     clearlists();
 }
@@ -188,6 +195,8 @@ void Form_filter::set_quartz_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_value,1,1);
 
     fill_quartz_combobox();
+
+    connect(comboBox_filter_value, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_value_currentTextChanged(QString)));
 
     clearlists();
 }
@@ -205,6 +214,11 @@ void Form_filter::set_relay_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_current,1,7);
 
     fill_relay_combobox();
+
+    connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    connect(comboBox_filter_configuration, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_configuration_currentTextChanged(QString)));
+    connect(comboBox_filter_voltage, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_voltage_currentTextChanged(QString)));
+    connect(comboBox_filter_current, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_current_currentTextChanged(QString)));
 
     clearlists();
 }
@@ -243,6 +257,11 @@ void Form_filter::set_switch_filter(){
 
     fill_switch_combobox();
 
+    connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    connect(comboBox_filter_configuration, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_configuration_currentTextChanged(QString)));
+    connect(comboBox_filter_voltage, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_voltage_currentTextChanged(QString)));
+    connect(comboBox_filter_current, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_current_currentTextChanged(QString)));
+
     clearlists();
 }
 
@@ -262,6 +281,10 @@ void Form_filter::set_transformator_filter(){
     ui->gridLayout_filter->addWidget(comboBox_filter_power,2,3);
 
     fill_transformator_combobox();
+
+    connect(comboBox_filter_reference, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_reference_currentTextChanged(QString)));
+    connect(comboBox_filter_power, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_power_currentTextChanged(QString)));
+    connect(comboBox_filter_voltage, SIGNAL(currentTextChanged(QString)), this, SLOT(on_comboBox_filter_voltage_currentTextChanged(QString)));
 
     clearlists();
 }
@@ -288,6 +311,10 @@ void Form_filter::set_transistor_filter(){
 
     clearlists();
 }
+
+// ******************************************************
+// ***** FILL COMBOBOX
+// ******************************************************
 
 void Form_filter::FillComboBox(QString _String, QString _Item, QString _Component, QComboBox *Combobox){
 
@@ -443,6 +470,10 @@ void Form_filter::fill_transistor_combobox(){
     FillComboBox(SelectData, "Voltage", "Transistor", comboBox_filter_voltage);
     FillComboBox(SelectData, "Current", "Transistor", comboBox_filter_current);
 }
+
+// **************************************************************
+// ***** Combobox change managing
+// **************************************************************
 
 // Prise en compte changement combobox
 /*
@@ -617,6 +648,54 @@ void Form_filter::on_comboBox_filter_spacing_currentTextChanged(const QString &a
     }
 }
 
+void Form_filter::on_comboBox_filter_color_currentTextChanged(const QString &arg1){
+    if(comboBox_filter_color->currentText()!=""){
+        if(ListFilterCombobox.indexOf("Color")==-1){
+            ListFilterCombobox<<"Color";
+            ListFilterData.insert( ListFilterCombobox.indexOf("Color") , arg1 );
+        }
+        else{
+            ListFilterData.replace( ListFilterCombobox.indexOf("Color") , arg1 );
+        }
+    }
+    else if(comboBox_filter_color->currentText()=="" && ListFilterCombobox.indexOf("Color")!=-1){
+        ListFilterData.removeAt(ListFilterCombobox.indexOf("Color"));
+        ListFilterCombobox.removeOne("Color");
+    }
+}
+
+void Form_filter::on_comboBox_filter_diameter_currentTextChanged(const QString &arg1){
+    if(comboBox_filter_diameter->currentText()!=""){
+        if(ListFilterCombobox.indexOf("Diameter")==-1){
+            ListFilterCombobox<<"Diameter";
+            ListFilterData.insert( ListFilterCombobox.indexOf("Diameter") , arg1 );
+        }
+        else{
+            ListFilterData.replace( ListFilterCombobox.indexOf("Diameter") , arg1 );
+        }
+    }
+    else if(comboBox_filter_diameter->currentText()=="" && ListFilterCombobox.indexOf("Diameter")!=-1){
+        ListFilterData.removeAt(ListFilterCombobox.indexOf("Diameter"));
+        ListFilterCombobox.removeOne("Diameter");
+    }
+}
+
+void Form_filter::on_comboBox_filter_configuration_currentTextChanged(const QString &arg1){
+    if(comboBox_filter_configuration->currentText()!=""){
+        if(ListFilterCombobox.indexOf("Configuration")==-1){
+            ListFilterCombobox<<"Configuration";
+            ListFilterData.insert( ListFilterCombobox.indexOf("Configuration") , arg1 );
+        }
+        else{
+            ListFilterData.replace( ListFilterCombobox.indexOf("Configuration") , arg1 );
+        }
+    }
+    else if(comboBox_filter_configuration->currentText()=="" && ListFilterCombobox.indexOf("Package")!=-1){
+        ListFilterData.removeAt(ListFilterCombobox.indexOf("Configuration"));
+        ListFilterCombobox.removeOne("Configuration");
+    }
+}
+
 void Form_filter::on_comboBox_filter_package_currentTextChanged(const QString &arg1){
     if(ui->comboBox_filter_package->currentText()!=""){
         if(ListFilterCombobox.indexOf("Package")==-1){
@@ -685,7 +764,10 @@ void Form_filter::on_comboBox_filter_item_number_currentTextChanged(const QStrin
     }
 }
 
-// Reset du filter
+// **************************************************
+// *****         Filter Reset
+// **************************************************
+
 void Form_filter::on_pushButton_filter_reset_clicked(){
 
     clearlists();
@@ -707,7 +789,12 @@ void Form_filter::on_pushButton_filter_reset_clicked(){
         fill_diode_combobox();
         break;
 
+    case Fuse:
+        fill_fuse_combobox();
+        break;
+
     case Inductor:
+        fill_inductor_combobox();
         break;
 
     case Integrated_Circuit:
@@ -715,29 +802,38 @@ void Form_filter::on_pushButton_filter_reset_clicked(){
         break;
 
     case Led:
+        fill_led_combobox();
         break;
 
     case Quartz:
+        fill_quartz_combobox();
         break;
 
     case Relay:
+        fill_relay_combobox();
         break;
 
     case Resistor:
         fill_resistor_combobox();
         break;
 
+    case Switch:
+        fill_switch_combobox();
+        break;
+
+    case Transformator:
+        fill_transformator_combobox();
+        break;
+
     case Transistor:
         fill_transistor_combobox();
         break;
-    case Fuse:
-        break;
-    case Switch:
-        break;
-    case Transformator:
-        break;
     }
 }
+
+// *******************************************************
+// ***** Combobox Filling
+// *******************************************************
 
 void Form_filter::FillFilteredComboBox_OneItem(QString _String, QString _Item, QString _Component, QComboBox *Combobox){
 
@@ -775,7 +871,10 @@ void Form_filter::FillFilteredComboBox_FourItem(QString _String, QString _Item, 
     Combobox->setModel(Model);
 }
 
-// Activation du filter
+// *********************************************************************
+// ***** Filter Managing => emit notifyRefreshTable(dataToRefresh);
+// *********************************************************************
+
 void Form_filter::on_pushButton_filter_activate_filter_clicked()
 {
     QString dataToRefresh;
@@ -896,6 +995,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             break;
         }
     }
+
     else if(componentToFilter==Connector){
 
         switch(ListFilterCombobox.length()){
@@ -916,7 +1016,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Spacing")==-1)
                 FillFilteredComboBox_OneItem(SelectFilteredData_OneItem, "Spacing", "Connector", comboBox_filter_spacing);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number from Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number FROM Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
             break;
 
         case 2:
@@ -936,7 +1036,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Spacing")==-1)
                 FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Spacing","Connector",comboBox_filter_spacing);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number from Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number FROM Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
             break;
 
         case 3:
@@ -956,10 +1056,31 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Spacing")==-1)
                 FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Spacing","Connector",comboBox_filter_spacing);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number from Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number FROM Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            //Si l'element ne fait pas partie de la liste on charge la combo et sinon on n'y touche pas...
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+               FillFilteredComboBox_FourItem(SelectFilteredData_FourItem, "Item_number", "Capacitor", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_FourItem(SelectFilteredData_FourItem, "Supplier", "Capacitor", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Reference","Connector",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Contacts")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Contacts","Connector",comboBox_filter_contacts);
+
+            if(ListFilterCombobox.indexOf("Spacing")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Spacing","Connector",comboBox_filter_spacing);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number FROM Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
             break;
         }
     }
+
     else if(componentToFilter==Diode){
 
         switch(ListFilterCombobox.length()){
@@ -991,7 +1112,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Current")==-1)
                 FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Diode",comboBox_filter_current);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number from Parts WHERE "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Diode' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
             break;
 
         case 2:
@@ -1022,7 +1143,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Current")==-1)
                 FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Current","Diode",comboBox_filter_current);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number from Parts WHERE "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Diode' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
             break;
 
         case 3:
@@ -1053,13 +1174,276 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Current")==-1)
                 FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Current","Diode",comboBox_filter_current);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number from Parts WHERE "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Diode' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Item_number","Diode",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Supplier","Diode",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Mounting","Diode",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Package","Diode",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Reference","Diode",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Type","Diode",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Power")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Power","Diode",comboBox_filter_power);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Voltage","Diode",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Current","Diode",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Diode' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
             break;
         }
     }
+
+    else if(componentToFilter==Fuse){
+
+        switch(ListFilterCombobox.length()){
+        case 1:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Fuse",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Fuse",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Fuse",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Fuse",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Fuse",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Type","Fuse",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Fuse",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Fuse",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
+            break;
+
+        case 2:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Item_number","Fuse",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Supplier","Fuse",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Mounting","Fuse",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Package","Fuse",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Reference","Fuse",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Type","Fuse",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Voltage","Fuse",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Current","Fuse",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
+            break;
+
+        case 3:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Item_number","Fuse",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Supplier","Fuse",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Mounting","Fuse",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Package","Fuse",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Reference","Fuse",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Type","Fuse",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Voltage","Fuse",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Current","Fuse",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND  "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Item_number","Fuse",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Supplier","Fuse",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Mounting","Fuse",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Package","Fuse",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Reference","Fuse",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Type","Fuse",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Voltage","Fuse",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Current","Fuse",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND  "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+        }
+    }
+
     else if(componentToFilter==Inductor){
 
+        switch(ListFilterCombobox.length()){
+        case 1:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Inductor",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Inductor",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Inductor",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Inductor",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Inductor",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Type","Inductor",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Inductor",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Inductor",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Inductor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Value";
+            break;
+
+        case 2:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Inductor",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Inductor",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Inductor",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Inductor",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Inductor",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Type","Inductor",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Inductor",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Inductor",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Inductor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Value";
+            break;
+
+        case 3:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Inductor",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Inductor",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Inductor",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Inductor",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Inductor",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Type","Inductor",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Inductor",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Inductor",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Inductor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Value";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Inductor",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Inductor",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Inductor",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Inductor",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Inductor",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Type","Inductor",comboBox_filter_type);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Inductor",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Inductor",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Inductor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Value";
+            break;
+        }
     }
+
     else if(componentToFilter==Integrated_Circuit){
 
         switch(ListFilterCombobox.length()){
@@ -1082,7 +1466,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Type")==-1)
                 FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Type","Integrated Circuit", comboBox_filter_type);
 
-            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Integrated Circuit' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
             break;
 
         case 2:
@@ -1104,7 +1488,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Type")==-1)
                 FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Type","Integrated Circuit", comboBox_filter_type);
 
-            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Integrated Circuit' AND  "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
             break;
 
         case 3:
@@ -1126,18 +1510,332 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Type")==-1)
                 FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Type","Integrated Circuit", comboBox_filter_type);
 
-            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"'";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Integrated Circuit' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Item_number","Integrated Circuit", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Supplier","Integrated Circuit", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Mounting","Integrated Circuit", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Package","Integrated Circuit", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Reference","Integrated Circuit", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Type")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Type","Integrated Circuit", comboBox_filter_type);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Integrated Circuit' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
             break;
         }
     }
+
     else if(componentToFilter==Led){
 
+        switch(ListFilterCombobox.length()){
+        case 1:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Led", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Led", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Led", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Led", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Led", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Color")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Color","Led", comboBox_filter_color);
+
+            if(ListFilterCombobox.indexOf("Diameter")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Diameter","Led", comboBox_filter_diameter);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Color, Diameter, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Led' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
+            break;
+
+        case 2:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Led", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Led", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Led", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Led", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Led", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Color")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Color","Led", comboBox_filter_color);
+
+            if(ListFilterCombobox.indexOf("Diameter")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Diameter","Led", comboBox_filter_diameter);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Color, Diameter, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Led' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
+            break;
+
+        case 3:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Led", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Led", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Led", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Led", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Led", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Color")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Color","Led", comboBox_filter_color);
+
+            if(ListFilterCombobox.indexOf("Diameter")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Diameter","Led", comboBox_filter_diameter);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Color, Diameter, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Led' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Led", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Led", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Led", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Led", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Led", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Color")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Color","Led", comboBox_filter_color);
+
+            if(ListFilterCombobox.indexOf("Diameter")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Diameter","Led", comboBox_filter_diameter);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Color, Diameter, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Led' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+        }
     }
     else if(componentToFilter==Quartz){
 
+        switch(ListFilterCombobox.length()){
+        case 1:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Quartz", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Quartz", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Quartz", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Quartz", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Value")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Value","Quartz", comboBox_filter_value);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Quartz' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Value";
+            break;
+
+        case 2:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Quartz", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Quartz", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Quartz", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Quartz", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Value")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Value","Quartz", comboBox_filter_value);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Quartz' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Value";
+            break;
+
+        case 3:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Quartz", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Quartz", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Quartz", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Quartz", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Value")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Value","Quartz", comboBox_filter_value);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Quartz' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Value";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Quartz", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Quartz", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Quartz", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Quartz", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Value")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Value","Quartz", comboBox_filter_value);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Quartz' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Value";
+            break;
+        }
     }
     else if(componentToFilter==Relay){
 
+        switch(ListFilterCombobox.length()){
+        case 1:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Relay", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Relay", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Relay", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Relay", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Relay", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Relay", comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Relay", comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Relay", comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Relay' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
+            break;
+
+        case 2:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Relay", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Relay", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Relay", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Relay", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Relay", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Relay", comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Relay", comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Relay", comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Relay' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
+            break;
+
+        case 3:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Relay", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Relay", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Relay", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Relay", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Relay", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Relay", comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Relay", comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Relay", comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Relay' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Relay", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Relay", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Relay", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Relay", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Relay", comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Relay", comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Relay", comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Relay", comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Relay' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+        }
     }
     else if(componentToFilter==Resistor){
 
@@ -1217,6 +1915,12 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             dataToRefresh="SELECT Parts_id, Value, Quantity, Power, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Resistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Value";
             break;
         }
+    }
+    else if(componentToFilter==Switch){
+
+    }
+    else if(componentToFilter==Transformator){
+
     }
     else if(componentToFilter==Transistor)
     {

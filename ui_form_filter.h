@@ -79,8 +79,7 @@ public:
         comboBox_filter_package->setObjectName(QStringLiteral("comboBox_filter_package"));
         sizePolicy.setHeightForWidth(comboBox_filter_package->sizePolicy().hasHeightForWidth());
         comboBox_filter_package->setSizePolicy(sizePolicy);
-        comboBox_filter_package->setMinimumSize(QSize(0, 20));
-        comboBox_filter_package->setMaximumSize(QSize(65, 20));
+        comboBox_filter_package->setMinimumSize(QSize(65, 20));
         comboBox_filter_package->setBaseSize(QSize(65, 20));
         comboBox_filter_package->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 
@@ -126,8 +125,7 @@ public:
         comboBox_filter_mounting->setObjectName(QStringLiteral("comboBox_filter_mounting"));
         sizePolicy.setHeightForWidth(comboBox_filter_mounting->sizePolicy().hasHeightForWidth());
         comboBox_filter_mounting->setSizePolicy(sizePolicy);
-        comboBox_filter_mounting->setMinimumSize(QSize(0, 20));
-        comboBox_filter_mounting->setMaximumSize(QSize(65, 20));
+        comboBox_filter_mounting->setMinimumSize(QSize(65, 20));
         comboBox_filter_mounting->setBaseSize(QSize(65, 20));
         comboBox_filter_mounting->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 

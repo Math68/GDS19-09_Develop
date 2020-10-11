@@ -91,7 +91,7 @@ public:
     QString SearchFusebyPartId = "SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND Reference != '' ORDER BY Reference";
     QString SearchInductorbyPartId = "SELECT Parts_id, Component, Value, Quantity, Mounting, Package, Current, Tolerance, Supplier, Item_number FROM Parts WHERE Component='Inductor' AND Parts_id='%1'";
     QString SearchIntegratedCircuitbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Integrated Circuit' AND Parts_id='%1'";
-    QString SearchLedbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Mounting, Package, Color, Diameter, Supplier, Item_number FROM Parts WHERE Component='Led' AND Parts_id='%1'";
+    QString SearchLedbyPartId = "SELECT Parts_id, Component, Reference, Quantity, Color, Diameter, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Led' AND Parts_id='%1'";
     QString SearchQuartzbyPartId = "SELECT Parts_id, Component, Value, Quantity, Mounting, Package, Supplier, Item_number FROM Parts WHERE Component='Quartz' AND Parts_id='%1'";
     QString SearchRelaybyPartId ="SELECT Parts_id, Component, Reference, Quantity, Mounting, Package, Voltage, Current, Configuration, Supplier, Item_number FROM Parts WHERE Component='Relay' AND Parts_id='%1'";
     QString SearchResistorbyPartId = "SELECT Parts_id, Component, Value, Quantity, Power, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE component='Resistor' AND Parts_id='%1'";
@@ -104,7 +104,7 @@ public slots:
     void on_pushButton_search_component_clicked();
     void on_pushButton_store_component_clicked();
 
-    void onRefreshTable(QString dataToRefresh);
+    void RefreshTable(QString dataToRefresh);
     void displayTable(QString data);
 
     void on_tableView_doubleClicked(const QModelIndex &index);

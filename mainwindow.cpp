@@ -16,31 +16,31 @@ MainWindow::MainWindow(QWidget *parent) :
     capacitorfilter = new Form_filter;  
     connectorfilter = new Form_filter;
     diodefilter = new Form_filter;
+    fusefilter = new Form_filter;
     inductorfilter = new Form_filter;
     integratedcircuitfilter = new Form_filter;
     ledfilter = new Form_filter;
     quartzfilter = new Form_filter;
     relayfilter = new Form_filter;
     resistorfilter = new Form_filter;
-    transistorfilter = new Form_filter;
-    fusefilter = new Form_filter;
     switchfilter = new Form_filter;
     transformatorfilter = new Form_filter;
+    transistorfilter = new Form_filter;
 
     //connect(capacitorfilter, SIGNAL(notifyRefreshTable(QString)) , this, SLOT(onRefreshCapacitorTable(QString)));
-    connect(capacitorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(connectorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(diodefilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(fusefilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(inductorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(integratedcircuitfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(ledfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(quartzfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(relayfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(resistorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(switchfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(transformatorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
-    connect(transistorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::onRefreshTable);
+    connect(capacitorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(connectorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(diodefilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(fusefilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(inductorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(integratedcircuitfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(ledfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(quartzfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(relayfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(resistorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(switchfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(transformatorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
+    connect(transistorfilter, &Form_filter::notifyRefreshTable, this, &MainWindow::RefreshTable);
 
     Window_parts_id_update = new Dialog_parts_id_update;
     connect(this, &MainWindow::notify_parts_id_to_update, Window_parts_id_update, &Dialog_parts_id_update::display_parts_id_selected);
@@ -49,10 +49,6 @@ MainWindow::MainWindow(QWidget *parent) :
     Window_parts_id_delete = new Dialog_parts_id_delete;
     connect(this, &MainWindow::notify_parts_id_to_delete, Window_parts_id_delete, &Dialog_parts_id_delete::display_parts_id_to_deleted);
     connect(Window_parts_id_delete, &Dialog_parts_id_delete::notify_DatabaseRowToDelete, this, &MainWindow::DataBaseDeleteRow);
-
-    // change on 04/10/20
-    //Dialog_store_windows store_window;
-    //connect(store_window, &Dialog_store_windows::notify_component_has_been_saved, this, &MainWindow::UpdateTableRow);
 
     //Database connection
     if(!GDS19_DataBase.OpenConnection())
@@ -250,7 +246,7 @@ void MainWindow::displayTable(QString data)
     }
 }
 
-void MainWindow::onRefreshTable(QString dataToRefresh)
+void MainWindow::RefreshTable(QString dataToRefresh)
 {
     displayTable(dataToRefresh);
 }
