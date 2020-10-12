@@ -94,6 +94,8 @@ public:
     void fill_transformator_combobox();
     void fill_transistor_combobox();
 
+    void maxItemMessage();
+
 private slots:
 
     void on_pushButton_filter_reset_clicked();

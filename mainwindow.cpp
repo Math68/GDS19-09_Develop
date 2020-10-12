@@ -90,7 +90,7 @@ void MainWindow::on_pushButton_search_component_clicked()
         choose_filter_layout = new QVBoxLayout;
         ui->page1->setLayout(choose_filter_layout);
         ClearTable();
-        QMessageBox::warning(this,tr(" "),tr("Select a component !!!"));
+        QMessageBox::warning(this,tr(" "),tr("Select a component !!!     "));
     }
     else if(ui->comboBox_component->currentText()=="Capacitor")  // page 2, indice 1
     {
@@ -272,7 +272,7 @@ void MainWindow::on_pushButton_store_component_clicked()
         ui->page1->setLayout(choose_filter_layout);
 
         ClearTable();
-        QMessageBox::warning(this,tr(" "),tr("Select a component !!!"));
+        QMessageBox::warning(this,tr(" "),tr("Select a component !!!     "));
     }
     else{
         //Dialog_store_windows store_window;

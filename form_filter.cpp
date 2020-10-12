@@ -993,6 +993,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
 
             dataToRefresh="SELECT Parts_id, Value, Quantity, Voltage, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Capacitor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Value ";
             break;
+
+        default:
+                    maxItemMessage();
+            break;
         }
     }
 
@@ -1077,6 +1081,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
                 FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Spacing","Connector",comboBox_filter_spacing);
 
             dataToRefresh="SELECT Parts_id, Reference, Quantity, Contacts, Spacing, Description, Supplier, Item_number FROM Parts WHERE Component='Connector' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+
+        default:
+                    maxItemMessage();
             break;
         }
     }
@@ -1207,6 +1215,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
 
             dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Power, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Diode' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
             break;
+
+        default:
+                    maxItemMessage();
+            break;
         }
     }
 
@@ -1323,6 +1335,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
                 FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Current","Fuse",comboBox_filter_current);
 
             dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Fuse' AND  "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+
+        default:
+                    maxItemMessage();
             break;
         }
     }
@@ -1441,6 +1457,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
 
             dataToRefresh="SELECT Parts_id, Value, Quantity, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Inductor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Value";
             break;
+
+        default:
+                    maxItemMessage();
+            break;
         }
     }
 
@@ -1533,6 +1553,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
                 FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Type","Integrated Circuit", comboBox_filter_type);
 
             dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Description, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Integrated Circuit' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+
+        default:
+                    maxItemMessage();
             break;
         }
     }
@@ -1639,6 +1663,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
 
             dataToRefresh="SELECT Parts_id, Reference, Quantity, Color, Diameter, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Led' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
             break;
+
+        default:
+                    maxItemMessage();
+            break;
         }
     }
     else if(componentToFilter==Quartz){
@@ -1718,6 +1746,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
                 FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Value","Quartz", comboBox_filter_value);
 
             dataToRefresh="SELECT Parts_id, Value, Quantity, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Quartz' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Value";
+            break;
+
+        default:
+                    maxItemMessage();
             break;
         }
     }
@@ -1835,6 +1867,10 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
 
             dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Relay' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
             break;
+
+        default:
+                    maxItemMessage();
+            break;
         }
     }
     else if(componentToFilter==Resistor){
@@ -1914,13 +1950,265 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
 
             dataToRefresh="SELECT Parts_id, Value, Quantity, Power, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Resistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Value";
             break;
+
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem, "Item_number", "Resistor", ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem, "Supplier", "Resistor", ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem, "Mounting", "Resistor", ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem, "Package", "Resistor", ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Value")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem, "Value", "Resistor", comboBox_filter_value);
+
+            if(ListFilterCombobox.indexOf("Power")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem, "Power", "Resistor", comboBox_filter_power);
+
+            if(ListFilterCombobox.indexOf("Tolerance")==-1)
+                FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem, "Tolerance", "Resistor", comboBox_filter_tolerance);
+
+            dataToRefresh="SELECT Parts_id, Value, Quantity, Power, Tolerance, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Resistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Value";
+            break;
+
+        default:
+                    maxItemMessage();
+            break;
         }
     }
     else if(componentToFilter==Switch){
 
+        switch(ListFilterCombobox.length()){
+        case 1:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Switch",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Switch",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Switch",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Switch",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Switch",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Switch",comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Switch",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Switch",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Switch' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
+            break;
+
+        case 2:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Switch",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Switch",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Switch",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Switch",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Switch",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Switch",comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Switch",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Switch",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Switch' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
+            break;
+
+        case 3:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Switch",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Switch",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Switch",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Switch",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Switch",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Switch",comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Switch",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Switch",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Switch' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Switch",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Switch",ui->comboBox_filter_supplier);
+
+            if(ListFilterCombobox.indexOf("Mounting")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Switch",ui->comboBox_filter_mounting);
+
+            if(ListFilterCombobox.indexOf("Package")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Switch",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Switch",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Configuration")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Configuration","Switch",comboBox_filter_configuration);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Switch",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Current")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Switch",comboBox_filter_current);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Configuration, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Switch' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+
+        default:
+                    maxItemMessage();
+            break;
+        }
     }
     else if(componentToFilter==Transformator){
 
+        switch(ListFilterCombobox.length()){
+        case 1:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Transformator",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Transformator",ui->comboBox_filter_supplier);
+
+            //if(ListFilterCombobox.indexOf("Mounting")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Transformator",ui->comboBox_filter_mounting);
+
+            //if(ListFilterCombobox.indexOf("Package")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Transformator",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Transformator",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Transformator",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Power")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Power","Transformator",comboBox_filter_power);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Voltage, Power, Supplier, Item_number FROM Parts WHERE Component='Transformator' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
+            break;
+
+        case 2:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Transformator",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Transformator",ui->comboBox_filter_supplier);
+
+            //if(ListFilterCombobox.indexOf("Mounting")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Transformator",ui->comboBox_filter_mounting);
+
+            //if(ListFilterCombobox.indexOf("Package")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Transformator",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Transformator",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Transformator",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Power")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Power","Transformator",comboBox_filter_power);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Voltage, Power, Supplier, Item_number FROM Parts WHERE Component='Transformator' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
+            break;
+
+        case 3:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Transformator",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Transformator",ui->comboBox_filter_supplier);
+
+            //if(ListFilterCombobox.indexOf("Mounting")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Transformator",ui->comboBox_filter_mounting);
+
+            //if(ListFilterCombobox.indexOf("Package")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Transformator",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Transformator",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Transformator",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Power")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Power","Transformator",comboBox_filter_power);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Voltage, Power, Supplier, Item_number FROM Parts WHERE Component='Transformator' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        case 4:
+            if(ListFilterCombobox.indexOf("Item_number")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Item_number","Transformator",ui->comboBox_filter_item_number);
+
+            if(ListFilterCombobox.indexOf("Supplier")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Supplier","Transformator",ui->comboBox_filter_supplier);
+
+            //if(ListFilterCombobox.indexOf("Mounting")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Mounting","Transformator",ui->comboBox_filter_mounting);
+
+            //if(ListFilterCombobox.indexOf("Package")==-1)
+              //  FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Package","Transformator",ui->comboBox_filter_package);
+
+            if(ListFilterCombobox.indexOf("Reference")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Reference","Transformator",comboBox_filter_reference);
+
+            if(ListFilterCombobox.indexOf("Voltage")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Voltage","Transformator",comboBox_filter_voltage);
+
+            if(ListFilterCombobox.indexOf("Power")==-1)
+                FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Power","Transformator",comboBox_filter_power);
+
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Voltage, Power, Supplier, Item_number FROM Parts WHERE Component='Transformator' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' AND "+ListFilterCombobox[3]+"='"+ListFilterData[3]+"' ORDER BY Reference";
+            break;
+
+        default:
+            maxItemMessage();
+            break;
+        }
     }
     else if(componentToFilter==Transistor)
     {
@@ -1950,7 +2238,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Current")==-1)
                 FillFilteredComboBox_OneItem(SelectFilteredData_OneItem,"Current","Transistor",comboBox_filter_current);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number from Parts WHERE Component='Transistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Transistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' ORDER BY Reference";
             break;
 
         case 2:
@@ -1978,7 +2266,7 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Current")==-1)
                 FillFilteredComboBox_TwoItem(SelectFilteredData_TwoItem,"Current","Transistor",comboBox_filter_current);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number from Parts WHERE Component='Transistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Transistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' ORDER BY Reference";
             break;
 
         case 3:
@@ -2006,9 +2294,18 @@ void Form_filter::on_pushButton_filter_activate_filter_clicked()
             if(ListFilterCombobox.indexOf("Current")==-1)
                 FillFilteredComboBox_ThreeItem(SelectFilteredData_ThreeItem,"Current","Transistor",comboBox_filter_current);
 
-            dataToRefresh="select Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number from Parts WHERE Component='Transistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            dataToRefresh="SELECT Parts_id, Reference, Quantity, Type, Voltage, Current, Package, Mounting, Supplier, Item_number FROM Parts WHERE Component='Transistor' AND "+ListFilterCombobox[0]+"='"+ListFilterData[0]+"' AND "+ListFilterCombobox[1]+"='"+ListFilterData[1]+"' AND "+ListFilterCombobox[2]+"='"+ListFilterData[2]+"' ORDER BY Reference";
+            break;
+
+        default:
+            maxItemMessage();
             break;
         }
     }
     emit notifyRefreshTable(dataToRefresh);
+}
+
+void Form_filter::maxItemMessage(){
+
+    QMessageBox::warning(this,tr(" "),tr("To match items selected! Maximun 4 Parameters!!!     "));
 }
