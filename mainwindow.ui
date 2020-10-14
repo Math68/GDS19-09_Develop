@@ -26,7 +26,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Gestion de Stock: GDS19_V4 - 03/09/2020</string>
+   <string>Gestion de Stock: GDS19_V4 - 13/10/2020</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
